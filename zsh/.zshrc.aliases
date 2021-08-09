@@ -1,0 +1,101 @@
+# Use alias for Hero Cli Au
+alias herostag='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_STG herocli --server hero2.staging.ehrocks.com:443'
+alias heroprod='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.ehrocks.com:443'
+# Use alias for Hero Cli Eu
+# ----------------------
+alias heroprod_eu='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.eu.ehrocks.com:443'
+# ----------------------
+# Git Aliases
+# ----------------------
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add --all'
+alias gau='git add --update'
+alias gb='git branch'
+alias gbd='git branch --delete '
+alias gc='git commit'
+alias gcm='git commit --message'
+alias gcf='git commit --fixup'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcom='git checkout master'
+alias gcos='git checkout staging'
+alias gcod='git checkout development'
+alias gd='git diff'
+alias gda='git diff HEAD'
+alias gi='git init'
+alias glg='git log --graph --oneline --decorate --all'
+alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
+alias gm='git merge --no-ff'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+alias gp='git pull'
+alias gpr='git pull --rebase'
+alias gr='git rebase'
+alias gs='git status'
+alias gss='git status --short'
+alias gst='git stash'
+alias gsta='git stash apply'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash save'
+alias gfa='git fetch --all'
+alias gcp='git cherry-pick'
+alias grst='git reset --hard'
+# ----------------------
+# Alias for local kafka
+# ----------------------
+alias kafka-start='cd ~/works/standalone-services/kafka/ && docker-compose up'
+alias kafka-stop='cd ~/works/standalone-services/kafka/ && docker-compose down'
+alias kafka-consumer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
+alias kafka-producer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
+# ----------------------
+# Alias for starting macvim faster
+# ----------------------
+# ---- ALIAS VIM AS NEOVIM
+# ----------------------
+alias vim='nvim'
+alias vi='nvim'
+alias macvim='mvim -v'
+alias stmux='tmux new -s'
+# ----------------------
+# Alias for ruby
+# ----------------------
+alias be='bundle exec'
+alias brspec='bundle exec rspec'
+alias brspecall='bundle exec rspec spec --color --format doc'
+alias rs='bin/rails server'
+alias bep='bundle exec puma -p'
+alias begrpc='bundle exec eh_protobuf start -c'
+alias bipg='bundle install --path .gems'
+alias bi='bundle install --path .gems'
+# ----------------------
+# Alias for postgres
+# ----------------------
+alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+# Alias for local kafka
+# ----------------------
+alias kafka-start='cd ~/works/standalone-services/kafka/ && docker-compose up'
+alias kafka-stop='cd ~/works/standalone-services/kafka/ && docker-compose down'
+alias kafka-consumer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
+alias kafka-producer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
+# ----------------------
+# Alias for lazygit
+# ----------------------
+alias lzg="lazygit"
+# ----------------------
+# Alias for brew services
+# ----------------------
+alias brew_start_mongod="brew services start mongodb/brew/mongodb-community"
+alias brew_stop_mongod="brew services stop mongodb/brew/mongodb-community"
+alias brew_start_postgres="pg_ctl -D /usr/local/var/postgres start"
+alias brew_stop_postgres="pg_ctl -D /usr/local/var/postgres stop"
+alias brew_start_kafka="brew services start kafka"
+alias brew_stop_kafka="brew services stop kafka"
+alias brew_start_zookeeper="zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties"
+alias brew_start_kafka="kafka-server-start /usr/local/etc/kafka/server.properties"
+# ---- alias for others ----
+alias start_docker_ocr="docker run --rm -it --name myapp -v "$PWD":/app -w /app clearlinux/tesseract-ocr tesseract xxx.tiff stdout --oem 1a"
+alias pip="pip3"
