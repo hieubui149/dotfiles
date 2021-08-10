@@ -88,6 +88,7 @@ alias lzg="lazygit"
 # ----------------------
 # Alias for brew services
 # ----------------------
+alias breww="HOMEBREW_NO_AUTO_UPDATE=1 brew"
 alias brew_start_mongod="brew services start mongodb/brew/mongodb-community"
 alias brew_stop_mongod="brew services stop mongodb/brew/mongodb-community"
 alias brew_start_postgres="pg_ctl -D /usr/local/var/postgres start"
@@ -96,6 +97,8 @@ alias brew_start_kafka="brew services start kafka"
 alias brew_stop_kafka="brew services stop kafka"
 alias brew_start_zookeeper="zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties"
 alias brew_start_kafka="kafka-server-start /usr/local/etc/kafka/server.properties"
-# ---- alias for others ----
+# ----------------------
+# Alias for others
+# ----------------------
 alias start_docker_ocr="docker run --rm -it --name myapp -v "$PWD":/app -w /app clearlinux/tesseract-ocr tesseract xxx.tiff stdout --oem 1a"
 alias pip="pip3"

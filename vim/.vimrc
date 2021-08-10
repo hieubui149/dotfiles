@@ -788,7 +788,4 @@ nmap <C-r>mj :%!python -m json.tool<CR>
 " clear console
 nnoremap <silent> <CR> <ESC>:noh<CR>
 
-highlight TelescopeBorder         guifg=#ffffff
-highlight TelescopePromptBorder   guifg=#ffffff
-highlight TelescopeResultsBorder  guifg=#ffffff
-highlight TelescopePreviewBorder  guifg=#ffffff
+:set fillchars+=vert:\⏽
