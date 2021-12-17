@@ -68,8 +68,8 @@ alias brspecall='bundle exec rspec spec --color --format doc'
 alias rs='bin/rails server'
 alias bep='bundle exec puma -p'
 alias begrpc='bundle exec eh_protobuf start -c'
-alias bipg='bundle install --path .gems'
-alias bi='bundle install --path .gems'
+alias bipg='bundle install'
+alias bi='bundle install'
 # ----------------------
 # Alias for postgres
 # ----------------------
@@ -97,6 +97,11 @@ alias brew_start_kafka="brew services start kafka"
 alias brew_stop_kafka="brew services stop kafka"
 alias brew_start_zookeeper="zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties"
 alias brew_start_kafka="kafka-server-start /usr/local/etc/kafka/server.properties"
+# ----------------------
+# Alias for AWS Glue
+# ----------------------
+alias gluesparksubmit="~/works/packages/aws-glue-libs/bin/gluesparksubmit"
+alias gluesparkshell="~/works/packages/aws-glue-libs/bin/gluepyspark"
 # ----------------------
 # Alias for others
 # ----------------------

@@ -11,7 +11,7 @@ endif
 " INSTALL PLUGINS
 "========================================================
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'sainnhe/edge'
+" Plug 'sainnhe/edge'
 " Plug 'scrooloose/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
@@ -69,6 +69,9 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'kristijanhusak/orgmode.nvim'
+Plug 'kdheepak/lazygit.nvim'
+Plug 'tomlion/vim-solidity'
 call plug#end()
 syntax on
 filetype on
@@ -84,6 +87,7 @@ set breakindent
 set nofoldenable
 set tags=./tags;,tags;
 " set number
+" set relativenumber
 set nornu
 set autoindent
 set clipboard=unnamedplus
@@ -101,16 +105,23 @@ set expandtab
 set bs=2 tabstop=2 shiftwidth=2 softtabstop=2
 set backupcopy=yes
 set pastetoggle=<F2>
+set confirm
 xnoremap p pgvy
 setlocal foldmethod=indent
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
 endif
-" colorscheme tequila-sunrise
-let g:edge_style = 'neon'
-let g:edge_disable_italic_comment = 1
-colorscheme edge
+"========================================================
+" Theme setup
+" colorscheme edge
+" let g:edge_style = 'neon'
+" let g:edge_disable_italic_comment = 1
+" let g:edge_transparent_background = 1
+colorscheme nord
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+"========================================================
 set noshowmode
 " == AUTOCMD ================================
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -119,6 +130,16 @@ autocmd FileType typescript.tsx setlocal expandtab tabstop=2 shiftwidth=2 softta
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 " == AUTOCMD END ================================
+"
+"========================================================
+" ORGMODE CONFIGURATION
+"========================================================
+lua <<EOF
+require('orgmode').setup({
+  org_agenda_files = {'~/works/mine/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/works/mine/org/notes.org',
+})
+EOF
 "========================================================
 " NEOVIM TREESISTER CONFIGURATION
 "========================================================
@@ -355,7 +376,7 @@ let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet',
 " CONFIG LIGHTLINE
 "========================================================
 let g:lightline = {
-      \ 'colorscheme': 'material',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ ['mode', 'paste'], ['readonly', 'modified', 'gitbranch', 'filename'] ],
       \   'right': [ ['lineinfo'], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
@@ -476,7 +497,7 @@ nmap ga <Plug>(EasyAlign)
 " MAPPING RSPEC VIMTEST
 "========================================================
 map <Leader>tn :TestNearest<CR>
-map <Leader>tt :TestFile<CR>
+map <Leader>tf :TestFile<CR>
 map <Leader>ts :TestNearest<CR>
 map <Leader>tl :TestLast<CR>
 map <Leader>ta :TestSuite<CR>
@@ -487,13 +508,14 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " MAPPING TELESCOPE
 "========================================================
 " Find files using Telescope command-line sugar.
-nnoremap <c-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-nnoremap <c-g> <cmd>Telescope live_grep theme=get_dropdown<cr>
-nnoremap <c-o> <cmd>Telescope grep_string theme=get_dropdown<cr>
+" nnoremap <c-p> <cmd>Telescope find_files theme=get_dropdown<cr>
+" nnoremap <c-g> <cmd>Telescope live_grep theme=get_dropdown<cr>
+" nnoremap <c-o> <cmd>Telescope grep_string theme=get_dropdown<cr>
 nnoremap <leader>ff <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope git_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
 lua <<EOF
 local actions = require('telescope.actions')
 -- Global remapping
@@ -516,8 +538,8 @@ EOF
 " MAPPING FZF
 "========================================================
 " nnoremap <c-o> <ESC>:Tags<CR>
-" nnoremap <c-p> <ESC>:call fzf#vim#files('.', {})<CR>
-" nnoremap <c-g> <ESC>:Rg<space>
+nnoremap <c-p> <ESC>:call fzf#vim#files('.', fzf#vim#with_preview())<CR>
+nnoremap <c-g> <ESC>:Rg<space>
 nnoremap <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), {'options': '--exact'})<cr>
 nnoremap <silent> <leader>mm <ESC>:Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
@@ -561,7 +583,8 @@ function! SearchVisualSelectionWithRg() range
 endfunction
 
 let g:fzf_prefer_tmux = 1
-let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.6, 'border': 'sharp' } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 "========================================================
 " MISC MAPPING
@@ -621,11 +644,11 @@ endfunction
 "========================================================
 " AUGROUP
 "========================================================
-  :augroup numbertoggle
-  :  autocmd!
+  " :augroup numbertoggle
+  " :  autocmd!
   " :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   " :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-  :augroup END
+  " :augroup END
 
 "========================================================
 " JAVASCRIPT CONFIGURATION
@@ -681,6 +704,16 @@ inoreabbrev <expr> <bar><bar>
 inoreabbrev <expr> __
           \ <SID>isAtStartOfLine('__') ?
           \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+"========================================================
+" LAZYGIT
+"========================================================
+let g:lazygit_floating_window_winblend = 0 " transparency of floating window
+let g:lazygit_floating_window_scaling_factor = 0.9 " scaling factor for floating window
+let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
+let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage floating window if available
+let g:lazygit_use_neovim_remote = 0 " fallback to 0 if neovim-remote is not installed
+nnoremap <silent> <leader>lg :LazyGit<CR>
+nnoremap <silent> <leader>lgc :LazyGitConfig<CR>
 
 "========================================================
 " MISC CONFIG
@@ -744,6 +777,8 @@ nnoremap Jn i<CR><ESC>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
+" Toggle vim relative number
+nmap <C-L><C-L> :set invrelativenumber<CR>
 " Undo break points
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
@@ -755,10 +790,10 @@ inoremap ) )<c-g>u
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
 " Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+" nnoremap <Left> :echoe "Use h"<CR>
+" nnoremap <Right> :echoe "Use l"<CR>
+" nnoremap <Up> :echoe "Use k"<CR>
+" nnoremap <Down> :echoe "Use j"<CR>
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
