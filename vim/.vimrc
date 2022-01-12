@@ -68,7 +68,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 Plug 'kristijanhusak/orgmode.nvim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tomlion/vim-solidity'
@@ -212,32 +212,14 @@ EOF
 "========================================================
 " NVIM-TREE CONFIGURATION
 "========================================================
-let g:nvim_tree_side = 'left' "left by default
-let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ] "empty by default
-let g:nvim_tree_gitignore = 1 "0 by default
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
-let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
-let g:nvim_tree_auto_ignore_ft = [ 'startify', 'dashboard' ] "empty by default, don't auto open tree on specific filetypes.
 let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
-let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
-let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
 let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
-let g:nvim_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
-let g:nvim_tree_auto_resize = 0 "1 by default, will resize the tree to its saved width when opening a file
-let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
-let g:nvim_tree_hijack_netrw = 0 "1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
-let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
-let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
-let g:nvim_tree_lsp_diagnostics = 1 "0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
-let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
-let g:nvim_tree_hijack_cursor = 0 "1 by default, when moving cursor in the tree, will position the cursor at the start of the file on the current line
 let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
 let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
-let g:nvim_tree_update_cwd = 1 "0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
+let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 let g:nvim_tree_window_picker_exclude = {
     \   'filetype': [
     \     'packer',
@@ -294,7 +276,7 @@ highlight NvimTreeFolderIcon guibg=blue
 lua <<EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
-vim.g.nvim_tree_bindings = {
+local list = {
   { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
   { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
   { key = "v",                            cb = tree_cb("vsplit") },
@@ -327,6 +309,51 @@ vim.g.nvim_tree_bindings = {
   { key = "s",                            cb = tree_cb("system_open") },
   { key = "q",                            cb = tree_cb("close") },
   { key = "g?",                           cb = tree_cb("toggle_help") },
+}
+require'nvim-tree'.setup {
+  disable_netrw       = true,
+  hijack_netrw        = true,
+  open_on_setup       = true,
+  ignore_ft_on_setup  = {},
+  auto_close          = true,
+  hijack_cursor       = false,
+  update_cwd          = true,
+  diagnostics = {
+    enable = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    }
+  },
+  update_focused_file = {
+    enable      = true,
+    update_cwd  = false,
+    ignore_list = {}
+  },
+  filters = {
+    dotfiles = true,
+    custom = {}
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 500,
+  },
+  view = {
+    width   = 40,
+    height  = 30,
+    hide_root_folder = false,
+    side    = 'left',
+    auto_resize = true,
+    mappings = {
+      list = list
+    },
+    number = false,
+    relativenumber = false,
+    signcolumn = 'yes'
+  }
 }
 EOF
 "========================================================
@@ -511,28 +538,28 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " nnoremap <c-p> <cmd>Telescope find_files theme=get_dropdown<cr>
 " nnoremap <c-g> <cmd>Telescope live_grep theme=get_dropdown<cr>
 " nnoremap <c-o> <cmd>Telescope grep_string theme=get_dropdown<cr>
-nnoremap <leader>ff <cmd>Telescope file_browser<cr>
-nnoremap <leader>fg <cmd>Telescope git_files<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
+" nnoremap <leader>ff <cmd>Telescope file_browser<cr>
+" nnoremap <leader>fg <cmd>Telescope git_files<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
 lua <<EOF
-local actions = require('telescope.actions')
+-- local actions = require('telescope.actions')
 -- Global remapping
 ------------------------------
-require('telescope').setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close
-      },
-      n = {
-        ["<esc>"] = actions.close
-      },
-    },
-    layout_strategy = "horizontal",
-  }
-}
+-- require('telescope').setup{
+--   defaults = {
+--     mappings = {
+--       i = {
+--         ["<esc>"] = actions.close
+--       },
+--       n = {
+--         ["<esc>"] = actions.close
+--       },
+--     },
+--     layout_strategy = "horizontal",
+--   }
+-- }
 EOF
 "========================================================
 " MAPPING FZF
