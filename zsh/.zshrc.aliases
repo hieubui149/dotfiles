@@ -85,6 +85,7 @@ alias kafka-producer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kaf
 # Alias for lazygit
 # ----------------------
 alias lzg="lazygit"
+alias lzd="lazydocker"
 # ----------------------
 # Alias for brew services
 # ----------------------

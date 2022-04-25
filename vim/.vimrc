@@ -52,7 +52,6 @@ Plug 'schickling/vim-bufonly'
 Plug 'rhysd/clever-f.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'zenbro/mirror.vim'
-Plug 'brooth/far.vim'
 Plug 'vim-scripts/git-time-lapse'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
@@ -311,9 +310,9 @@ local list = {
   { key = "g?",                           cb = tree_cb("toggle_help") },
 }
 require'nvim-tree'.setup {
-  disable_netrw       = true,
+  disable_netrw       = false,
   hijack_netrw        = true,
-  open_on_setup       = true,
+  open_on_setup       = false,
   ignore_ft_on_setup  = {},
   auto_close          = true,
   hijack_cursor       = false,
