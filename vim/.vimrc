@@ -68,7 +68,6 @@ Plug 'windwp/nvim-autopairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 " Plug 'nvim-telescope/telescope.nvim'
-Plug 'kristijanhusak/orgmode.nvim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tomlion/vim-solidity'
 call plug#end()
@@ -117,9 +116,11 @@ endif
 " let g:edge_style = 'neon'
 " let g:edge_disable_italic_comment = 1
 " let g:edge_transparent_background = 1
-colorscheme nord
+" colorscheme nord
+colorscheme embark
 let g:nord_uniform_diff_background = 1
 let g:nord_cursor_line_number_background = 1
+let g:embark_terminal_italics = 1
 "========================================================
 set noshowmode
 " == AUTOCMD ================================
@@ -129,16 +130,7 @@ autocmd FileType typescript.tsx setlocal expandtab tabstop=2 shiftwidth=2 softta
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 " == AUTOCMD END ================================
-"
-"========================================================
-" ORGMODE CONFIGURATION
-"========================================================
-lua <<EOF
-require('orgmode').setup({
-  org_agenda_files = {'~/works/mine/org/*', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/works/mine/org/notes.org',
-})
-EOF
+
 "========================================================
 " NEOVIM TREESISTER CONFIGURATION
 "========================================================
@@ -211,29 +203,18 @@ EOF
 "========================================================
 " NVIM-TREE CONFIGURATION
 "========================================================
-let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
-let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
 let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
 let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
 let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
 let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
-let g:nvim_tree_window_picker_exclude = {
-    \   'filetype': [
-    \     'packer',
-    \     'qf'
-    \   ],
-    \   'buftype': [
-    \     'terminal'
-    \   ]
-    \ }
 let g:nvim_tree_special_files = { 'README.md': 1, 'Makefile': 1, 'MAKEFILE': 1 } " List of filenames that gets highlighted with NvimTreeSpecialFile
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
     \ 'files': 1,
-    \ 'folder_arrows': 0,
+    \ 'folder_arrows': 1,
     \ }
 let g:nvim_tree_icons = {
     \ 'default': '',
@@ -271,7 +252,6 @@ nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 " NvimTreeOpen and NvimTreeClose are also available if you need them
 set termguicolors " this variable must be enabled for colors to be applied properly
-highlight NvimTreeFolderIcon guibg=blue
 lua <<EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- default mappings
@@ -314,7 +294,6 @@ require'nvim-tree'.setup {
   hijack_netrw        = true,
   open_on_setup       = false,
   ignore_ft_on_setup  = {},
-  auto_close          = true,
   hijack_cursor       = false,
   update_cwd          = true,
   diagnostics = {
@@ -324,6 +303,20 @@ require'nvim-tree'.setup {
       info = "",
       warning = "",
       error = "",
+    }
+  },
+  renderer = {
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
     }
   },
   update_focused_file = {
@@ -339,6 +332,26 @@ require'nvim-tree'.setup {
     enable = true,
     ignore = true,
     timeout = 500,
+  },
+  actions = {
+    use_system_clipboard = true,
+    change_dir = {
+      enable = true,
+      global = false,
+      restrict_above_cwd = false,
+    },
+    open_file = {
+      quit_on_open = true,
+      resize_window = false,
+      window_picker = {
+        enable = true,
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        exclude = {
+          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+          buftype = { "nofile", "terminal", "help" },
+        },
+      },
+    },
   },
   view = {
     width   = 40,
@@ -402,7 +415,7 @@ let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet',
 " CONFIG LIGHTLINE
 "========================================================
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ ['mode', 'paste'], ['readonly', 'modified', 'gitbranch', 'filename'] ],
       \   'right': [ ['lineinfo'], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
