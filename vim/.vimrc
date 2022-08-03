@@ -71,6 +71,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tomlion/vim-solidity'
 Plug 'sindrets/winshift.nvim'
+Plug 'ellisonleao/glow.nvim'
 call plug#end()
 syntax on
 filetype on
@@ -95,7 +96,6 @@ set splitbelow
 set lazyredraw
 set laststatus=2
 set encoding=utf8
-" set background=light
 set background=dark
 set textwidth=0
 set wrapmargin=0
@@ -136,6 +136,7 @@ au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 " NEOVIM TREESISTER CONFIGURATION
 "========================================================
 lua <<EOF
+require('nvim-treesitter.install').compilers = { "cl", "clang", "gcc" }
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'bash',
@@ -147,10 +148,11 @@ require'nvim-treesitter.configs'.setup {
     'ruby',
     'typescript',
     'yaml',
+    'markdown'
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = { 'markdown' },
   },
   indent = {
     enable = true,
@@ -794,6 +796,18 @@ nnoremap <silent> <leader>lg :LazyGit<CR>
 nnoremap <silent> <leader>lgc :LazyGitConfig<CR>
 
 "========================================================
+" GLOW FOR MARKDOWN
+"========================================================
+lua <<EOF
+require('glow').setup({
+  style = 'dark',
+  border = { "/", "-", "\\", "|" },
+  pager = false,
+  width = 160
+})
+EOF
+nnoremap <C-g>l :Glow<CR>
+"========================================================
 " MISC CONFIG
 "========================================================
 "Autopair
@@ -877,28 +891,22 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-" Vim folding configuration
+" vim folding configuration
 set foldmethod=indent
 set foldlevelstart=20
-
 " vim zoom
 noremap Zz <c-w>_ \| <c-w>\|
 noremap Zo <c-w>=
-
 " vim key mapping
 nmap <C-e> A<ESC>
 nmap <C-i> I<ESC>
-
-" Vim Surround customization
+" vim Surround customization
 autocmd FileType ruby let b:surround_45 = "do \r end"
-
-" Better whitespace
+" better whitespace
 autocmd BufWritePre * %s/\s\+$//e
-
 " JSON prettier
 nmap <C-r>mj :%!python3 -m json.tool<CR>
-
 " clear console
 nnoremap <silent> <CR> <ESC>:noh<CR>
-
+" change border style
 set fillchars=eob:\ ,fold:\ ,vert:\⏽
