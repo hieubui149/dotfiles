@@ -63,9 +63,10 @@ alias stmux='tmux new -s'
 # Alias for ruby
 # ----------------------
 alias be='bundle exec'
+alias berc='DISABLE_PRY_RAILS=1 bundle exec rails c'
+alias bers='bin/rails server'
 alias brspec='bundle exec rspec'
 alias brspecall='bundle exec rspec spec --color --format doc'
-alias rs='bin/rails server'
 alias bep='bundle exec puma -p'
 alias begrpc='bundle exec eh_protobuf start -c'
 alias bipg='bundle install'
@@ -77,10 +78,10 @@ alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.p
 alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 # Alias for local kafka
 # ----------------------
-alias kafka-start='cd ~/works/standalone-services/kafka/ && docker-compose up'
-alias kafka-stop='cd ~/works/standalone-services/kafka/ && docker-compose down'
-alias kafka-consumer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
-alias kafka-producer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
+alias kafka-start='cd ~/Works/standalone-services/kafka/ && docker-compose up'
+alias kafka-stop='cd ~/Works/standalone-services/kafka/ && docker-compose down'
+alias kafka-consumer='~/Works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
+alias kafka-producer='~/Works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
 # ----------------------
 # Alias for lazygit
 # ----------------------
@@ -103,6 +104,11 @@ alias brew_start_kafka="kafka-server-start /usr/local/etc/kafka/server.propertie
 # ----------------------
 alias gluesparksubmit="~/works/packages/aws-glue-libs/bin/gluesparksubmit"
 alias gluesparkshell="~/works/packages/aws-glue-libs/bin/gluepyspark"
+# ----------------------
+# Alias for SSH
+# ----------------------
+alias sshf247demo="ssh ubuntu@demo.f247.com"
+alias sshf247demo_subs="ssh ubuntu@18.142.204.139"
 # ----------------------
 # Alias for others
 # ----------------------

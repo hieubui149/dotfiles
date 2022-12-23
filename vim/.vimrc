@@ -1,12 +1,12 @@
 let g:python_host_prog='/Users/tomasbui/.config/nvim/venv2/bin/python'
 let g:python3_host_prog='/Users/tomasbui/.config/nvim/venv/bin/python'
-" Autoinstall vim-plug {{{
+"{{{ Autoinstall vim-plug
 if empty(glob('~/.nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-" }}}
+"}}}
 "=======================================================
 " INSTALL PLUGINS
 "========================================================
@@ -67,11 +67,15 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': ' arch -arm64 make' }
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tomlion/vim-solidity'
 Plug 'sindrets/winshift.nvim'
 Plug 'ellisonleao/glow.nvim'
+Plug 'itchyny/vim-cursorword'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 call plug#end()
 syntax on
 filetype on
@@ -106,7 +110,7 @@ set backupcopy=yes
 set pastetoggle=<F2>
 set confirm
 xnoremap p pgvy
-setlocal foldmethod=indent
+" setlocal foldmethod=indent
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
@@ -142,13 +146,14 @@ require'nvim-treesitter.configs'.setup {
     'bash',
     'dockerfile',
     'html',
-    'javascript',
     'json',
     'lua',
-    'ruby',
-    'typescript',
     'yaml',
-    'markdown'
+    'vim',
+    'hcl',
+    'lua',
+    'ruby',
+    'glimmer',
   },
   highlight = {
     enable = true,
@@ -159,6 +164,7 @@ require'nvim-treesitter.configs'.setup {
     disable = { 'ruby', 'lua' }
   }
 }
+
 -- -- nvim-autopairs
 local npairs = require'nvim-autopairs'
 local Rule = require('nvim-autopairs.rule')
@@ -451,7 +457,64 @@ let g:clever_f_across_no_line = 1
 "========================================================
 " CONFIG COC NVIM
 "========================================================
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions = [
+  \ 'coc-tslint-plugin',
+  \ 'coc-actions',
+  \ 'coc-css',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-vimlsp',
+  \ 'coc-highlight',
+  \ 'coc-ember',
+  \ 'coc-prettier'
+\ ]
+"" Use <cr> to confirm completion
+" remap <cr> to make it confirms completion
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" make <cr> select the first completion item and confirm the completion when no item has been selected
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+" GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "========================================================
 " CONFIG LIGHTLINE
 "========================================================
@@ -588,38 +651,47 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " MAPPING TELESCOPE
 "========================================================
 " Find files using Telescope command-line sugar.
-" nnoremap <c-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-" nnoremap <c-g> <cmd>Telescope live_grep theme=get_dropdown<cr>
-" nnoremap <c-o> <cmd>Telescope grep_string theme=get_dropdown<cr>
-" nnoremap <leader>ff <cmd>Telescope file_browser<cr>
-" nnoremap <leader>fg <cmd>Telescope git_files<cr>
-" nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
+" nnoremap <c-p> <cmd>Telescope find_files theme=get_ivy<cr>
+" nnoremap <c-f> <cmd>Telescope live_grep theme=get_ivy<cr>
+nnoremap <c-o> <cmd>Telescope grep_string theme=get_ivy<cr>
+nnoremap <leader>ff <cmd>Telescope file_browser<cr>
+nnoremap <leader>fg <cmd>Telescope git_files<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
 lua <<EOF
 -- local actions = require('telescope.actions')
 -- Global remapping
 ------------------------------
--- require('telescope').setup{
---   defaults = {
---     mappings = {
---       i = {
---         ["<esc>"] = actions.close
---       },
---       n = {
---         ["<esc>"] = actions.close
---       },
---     },
---     layout_strategy = "horizontal",
---   }
--- }
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = "close"
+      },
+      n = {
+        ["<esc>"] = "close"
+      },
+    },
+    layout_strategy = "horizontal",
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  }
+}
+-- require('telescope').load_extension('fzf')
 EOF
 "========================================================
 " MAPPING FZF
 "========================================================
 " nnoremap <c-o> <ESC>:Tags<CR>
 nnoremap <c-p> <ESC>:call fzf#vim#files('.', fzf#vim#with_preview())<CR>
-nnoremap <c-g> <ESC>:Rg<space>
+nnoremap <c-f> <ESC>:Rg<space>
 nnoremap <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), {'options': '--exact'})<cr>
 nnoremap <silent> <leader>mm <ESC>:Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
@@ -661,11 +733,13 @@ function! SearchVisualSelectionWithRg() range
   let &clipboard = old_clipboard
   execute 'SearchExactWord' selection
 endfunction
-
 let g:fzf_prefer_tmux = 1
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.3, 'border': 'sharp', 'yoffset': 1 } }
 autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 "========================================================
 " MISC MAPPING
 "========================================================
@@ -794,7 +868,6 @@ let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage float
 let g:lazygit_use_neovim_remote = 0 " fallback to 0 if neovim-remote is not installed
 nnoremap <silent> <leader>lg :LazyGit<CR>
 nnoremap <silent> <leader>lgc :LazyGitConfig<CR>
-
 "========================================================
 " GLOW FOR MARKDOWN
 "========================================================
@@ -807,6 +880,19 @@ require('glow').setup({
 })
 EOF
 nnoremap <C-g>l :Glow<CR>
+"========================================================
+" RENAMER
+"========================================================
+lua <<EOF
+require('renamer').setup()
+EOF
+inoremap <silent> <F2> <cmd>lua require('renamer').rename()<cr>
+nnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+vnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+
+hi default link RenamerNormal Normal
+hi default link RenamerBorder RenamerNormal
+hi default link RenamerTitle Identifier
 "========================================================
 " MISC CONFIG
 "========================================================
@@ -845,14 +931,12 @@ let g:buffet_powerline_separators = 1
 let g:buffet_tab_icon = "\uf00a"
 let g:buffet_left_trunc_icon = "\uf0a8"
 let g:buffet_right_trunc_icon = "\uf0a9"
-
 " mouse interractive
 set mouse=nicr
 set smartindent
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespace
 let g:netrw_localrmdir='rm -r'
 filetype plugin indent on
-
 " Copy to 'clipboard registry'
 vmap <C-c> "*y
 " Yank to the end of line
@@ -893,6 +977,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " vim folding configuration
 set foldmethod=indent
+" set foldmethod=marker
 set foldlevelstart=20
 " vim zoom
 noremap Zz <c-w>_ \| <c-w>\|
