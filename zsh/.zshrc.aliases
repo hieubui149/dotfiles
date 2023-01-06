@@ -69,8 +69,8 @@ alias brspec='bundle exec rspec'
 alias brspecall='bundle exec rspec spec --color --format doc'
 alias bep='bundle exec puma -p'
 alias begrpc='bundle exec eh_protobuf start -c'
-alias bipg='bundle install'
-alias bi='bundle install --path .gems'
+alias bipg='bundle install --path .gems'
+alias bi='bundle install'
 # ----------------------
 # Alias for postgres
 # ----------------------

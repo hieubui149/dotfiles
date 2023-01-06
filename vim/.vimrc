@@ -75,7 +75,6 @@ Plug 'sindrets/winshift.nvim'
 Plug 'ellisonleao/glow.nvim'
 Plug 'itchyny/vim-cursorword'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 call plug#end()
 syntax on
 filetype on
@@ -881,19 +880,6 @@ require('glow').setup({
 EOF
 nnoremap <C-g>l :Glow<CR>
 "========================================================
-" RENAMER
-"========================================================
-lua <<EOF
-require('renamer').setup()
-EOF
-inoremap <silent> <F2> <cmd>lua require('renamer').rename()<cr>
-nnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
-vnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
-
-hi default link RenamerNormal Normal
-hi default link RenamerBorder RenamerNormal
-hi default link RenamerTitle Identifier
-"========================================================
 " MISC CONFIG
 "========================================================
 "Autopair
@@ -995,3 +981,7 @@ nmap <C-r>mj :%!python3 -m json.tool<CR>
 nnoremap <silent> <CR> <ESC>:noh<CR>
 " change border style
 set fillchars=eob:\ ,fold:\ ,vert:\⏽
+" always no paste
+set nopaste
+" vim quick open replace text
+noremap <c-r><c-p> :%s<space>
