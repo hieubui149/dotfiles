@@ -69,7 +69,7 @@ alias rs='bin/rails server'
 alias bep='bundle exec puma -p'
 alias begrpc='bundle exec eh_protobuf start -c'
 alias bipg='bundle install'
-alias bi='bundle install --path .gems'
+alias bi='bundle install'
 # ----------------------
 # Alias for postgres
 # ----------------------

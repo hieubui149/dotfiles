@@ -1,19 +1,12 @@
-let g:python_host_prog='/Users/tomasbui/.config/nvim/venv2/bin/python'
-let g:python3_host_prog='/Users/tomasbui/.config/nvim/venv/bin/python'
-" Autoinstall vim-plug {{{
 if empty(glob('~/.nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
-" }}}
 "=======================================================
 " INSTALL PLUGINS
 "========================================================
 call plug#begin('~/.local/share/nvim/plugged')
-" Plug 'sainnhe/edge'
-" Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'tomtom/tcomment_vim'
@@ -36,7 +29,6 @@ Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'uarun/vim-protobuf'
 Plug 'terryma/vim-smooth-scroll'
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-cucumber'
@@ -48,6 +40,7 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
 Plug 'mhinz/vim-signify'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
 Plug 'schickling/vim-bufonly'
 Plug 'rhysd/clever-f.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -148,7 +141,6 @@ require'nvim-treesitter.configs'.setup {
     'ruby',
     'typescript',
     'yaml',
-    'markdown'
   },
   highlight = {
     enable = true,
@@ -250,66 +242,6 @@ local list = {
   { key = "g?",                           cb = tree_cb("toggle_help") },
 }
 require'nvim-tree'.setup {
-  create_in_closed_folder = true,
-  disable_netrw       = false,
-  hijack_netrw        = true,
-  open_on_setup       = false,
-  ignore_ft_on_setup  = {},
-  hijack_cursor       = false,
-  update_cwd          = true,
-  diagnostics = {
-    enable = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    }
-  },
-  renderer = {
-    highlight_git = true,
-    highlight_opened_files = "all",
-    root_folder_modifier = ":~",
-    indent_markers = {
-      enable = false
-    },
-    icons = {
-      padding = " ",
-      symlink_arrow = " ➛ ",
-      webdev_colors = true,
-      git_placement = "before",
-      show = {
-        file = true,
-        folder = true,
-        folder_arrow = true,
-        git = true
-      },
-      glyphs = {
-        default = "",
-        symlink = "",
-        folder = {
-          arrow_closed = "",
-          arrow_open = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = ""
-        },
-        git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
-          ignored = "◌"
-        },
-      },
-    },
-    special_files = { "Makefile", "README.md", "readme.md" }
-  },
   update_focused_file = {
     enable      = true,
     update_cwd  = false,
@@ -390,6 +322,7 @@ let g:ale_python_pylint_options = '--load-plugins pylint_django'
 " javascript
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 highlight SignColumn guibg=255
+
 "========================================================
 " WIN SHIFT CONFIGURATION
 "========================================================
@@ -406,24 +339,6 @@ require("winshift").setup({
     cursorcolumn = false,
     colorcolumn = "",
   },
-  -- The window picker is used to select a window while swapping windows with
-  -- ':WinShift swap'.
-  -- A string of chars used as identifiers by the window picker.
-  -- window_picker_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-  -- window_picker_ignore = {
-  --   -- This table allows you to indicate to the window picker that a window
-  --   -- should be ignored if its buffer matches any of the following criteria.
-  --   filetype = {  -- List of ignored file types
-  --     "NvimTree",
-  --   },
-  --   buftype = {   -- List of ignored buftypes
-  --     "terminal",
-  --     "quickfix",
-  --   },
-  --   bufname = {   -- List of regex patterns matching ignored buffer names
-  --     [[.*foo/bar/baz\.qux]]
-  --   },
-  -- },
 })
 EOF
 " Start Win-Move mode:
@@ -451,19 +366,71 @@ let g:clever_f_across_no_line = 1
 "========================================================
 " CONFIG COC NVIM
 "========================================================
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions = [
+  \ 'coc-tslint-plugin',
+  \ 'coc-tsserver',
+  \ 'coc-emmet',
+  \ 'coc-css',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-prettier'
+  \]
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "========================================================
 " CONFIG LIGHTLINE
 "========================================================
 let g:lightline = {
       \ 'colorscheme': 'one',
       \ 'active': {
-      \   'left': [ ['mode', 'paste'], ['readonly', 'modified', 'gitbranch', 'filename'] ],
-      \   'right': [ ['lineinfo'], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \   'left': [ ['mode', 'paste'], [ 'gitbranch' ], ['readonly', 'filename'] ],
+      \   'right': [ ['lineinfo'], [ 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
-      \   'gitbranch': 'fugitive#head',
+      \   'gitbranch': 'gitbranch#name',
       \   'percent': 'MyLightLinePercent',
       \   'lineinfo': 'MyLightLineLineInfo',
       \   'fileformat': 'LightlineFileformat',
@@ -619,7 +586,7 @@ EOF
 "========================================================
 " nnoremap <c-o> <ESC>:Tags<CR>
 nnoremap <c-p> <ESC>:call fzf#vim#files('.', fzf#vim#with_preview())<CR>
-nnoremap <c-g> <ESC>:Rg<space>
+nnoremap <c-f> <ESC>:Rg<space>
 nnoremap <c-]> <ESC>:call fzf#vim#tags(expand("<cword>"), {'options': '--exact'})<cr>
 nnoremap <silent> <leader>mm <ESC>:Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
@@ -806,7 +773,7 @@ require('glow').setup({
   width = 160
 })
 EOF
-nnoremap <C-g>l :Glow<CR>
+nnoremap <Leader>gw :Glow<CR>
 "========================================================
 " MISC CONFIG
 "========================================================
