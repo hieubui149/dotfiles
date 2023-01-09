@@ -60,11 +60,14 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': ' arch -arm64 make' }
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tomlion/vim-solidity'
 Plug 'sindrets/winshift.nvim'
 Plug 'ellisonleao/glow.nvim'
+Plug 'itchyny/vim-cursorword'
+Plug 'nvim-lua/plenary.nvim'
 call plug#end()
 syntax on
 filetype on
@@ -99,7 +102,7 @@ set backupcopy=yes
 set pastetoggle=<F2>
 set confirm
 xnoremap p pgvy
-setlocal foldmethod=indent
+" setlocal foldmethod=indent
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
@@ -135,11 +138,8 @@ require'nvim-treesitter.configs'.setup {
     'bash',
     'dockerfile',
     'html',
-    'javascript',
     'json',
     'lua',
-    'ruby',
-    'typescript',
     'yaml',
   },
   highlight = {
@@ -151,6 +151,7 @@ require'nvim-treesitter.configs'.setup {
     disable = { 'ruby', 'lua' }
   }
 }
+
 -- -- nvim-autopairs
 local npairs = require'nvim-autopairs'
 local Rule = require('nvim-autopairs.rule')
@@ -401,11 +402,16 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
-
+" GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -413,10 +419,8 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
-
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 "========================================================
@@ -555,31 +559,40 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " MAPPING TELESCOPE
 "========================================================
 " Find files using Telescope command-line sugar.
-" nnoremap <c-p> <cmd>Telescope find_files theme=get_dropdown<cr>
-" nnoremap <c-g> <cmd>Telescope live_grep theme=get_dropdown<cr>
-" nnoremap <c-o> <cmd>Telescope grep_string theme=get_dropdown<cr>
-" nnoremap <leader>ff <cmd>Telescope file_browser<cr>
-" nnoremap <leader>fg <cmd>Telescope git_files<cr>
-" nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
+" nnoremap <c-p> <cmd>Telescope find_files theme=get_ivy<cr>
+" nnoremap <c-f> <cmd>Telescope live_grep theme=get_ivy<cr>
+nnoremap <c-o> <cmd>Telescope grep_string theme=get_ivy<cr>
+nnoremap <leader>ff <cmd>Telescope file_browser<cr>
+nnoremap <leader>fg <cmd>Telescope git_files<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fr <cmd>Telescope live_grep theme=get_dropdown<cr>
 lua <<EOF
 -- local actions = require('telescope.actions')
 -- Global remapping
 ------------------------------
--- require('telescope').setup{
---   defaults = {
---     mappings = {
---       i = {
---         ["<esc>"] = actions.close
---       },
---       n = {
---         ["<esc>"] = actions.close
---       },
---     },
---     layout_strategy = "horizontal",
---   }
--- }
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = "close"
+      },
+      n = {
+        ["<esc>"] = "close"
+      },
+    },
+    layout_strategy = "horizontal",
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  }
+}
+-- require('telescope').load_extension('fzf')
 EOF
 "========================================================
 " MAPPING FZF
@@ -628,11 +641,13 @@ function! SearchVisualSelectionWithRg() range
   let &clipboard = old_clipboard
   execute 'SearchExactWord' selection
 endfunction
-
 let g:fzf_prefer_tmux = 1
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.3, 'border': 'sharp', 'yoffset': 1 } }
 autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 "========================================================
 " MISC MAPPING
 "========================================================
@@ -761,7 +776,6 @@ let g:lazygit_floating_window_use_plenary = 0 " use plenary.nvim to manage float
 let g:lazygit_use_neovim_remote = 0 " fallback to 0 if neovim-remote is not installed
 nnoremap <silent> <leader>lg :LazyGit<CR>
 nnoremap <silent> <leader>lgc :LazyGitConfig<CR>
-
 "========================================================
 " GLOW FOR MARKDOWN
 "========================================================
@@ -812,14 +826,12 @@ let g:buffet_powerline_separators = 1
 let g:buffet_tab_icon = "\uf00a"
 let g:buffet_left_trunc_icon = "\uf0a8"
 let g:buffet_right_trunc_icon = "\uf0a9"
-
 " mouse interractive
 set mouse=nicr
 set smartindent
 autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespace
 let g:netrw_localrmdir='rm -r'
 filetype plugin indent on
-
 " Copy to 'clipboard registry'
 vmap <C-c> "*y
 " Yank to the end of line
@@ -860,6 +872,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " vim folding configuration
 set foldmethod=indent
+" set foldmethod=marker
 set foldlevelstart=20
 " vim zoom
 noremap Zz <c-w>_ \| <c-w>\|
@@ -877,3 +890,7 @@ nmap <C-r>mj :%!python3 -m json.tool<CR>
 nnoremap <silent> <CR> <ESC>:noh<CR>
 " change border style
 set fillchars=eob:\ ,fold:\ ,vert:\⏽
+" always no paste
+set nopaste
+" vim quick open replace text
+noremap <c-r><c-p> :%s<space>
