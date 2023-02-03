@@ -63,11 +63,11 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': ' arch -arm64 make' }
 Plug 'kdheepak/lazygit.nvim'
-Plug 'tomlion/vim-solidity'
+" Plug 'tomlion/vim-solidity'
 Plug 'sindrets/winshift.nvim'
 Plug 'ellisonleao/glow.nvim'
 Plug 'itchyny/vim-cursorword'
-Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-lua/plenary.nvim'
 call plug#end()
 syntax on
 filetype on
@@ -101,6 +101,26 @@ set bs=2 tabstop=2 shiftwidth=2 softtabstop=2
 set backupcopy=yes
 set pastetoggle=<F2>
 set confirm
+set cursorline
+set nowrap
+set title
+set formatoptions=tcqronj
+set showtabline=0
+" mouse interractive
+set mouse=nicr
+set smartindent
+" vim folding configuration
+set foldmethod=indent
+" set foldmethod=marker
+set foldlevelstart=20
+" change border style
+set fillchars=eob:\ ,fold:\ ,vert:\⏽
+" always no paste
+set nopaste
+autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespace
+let g:netrw_localrmdir='rm -r'
+filetype plugin indent on
+
 xnoremap p pgvy
 " setlocal foldmethod=indent
 " If you have vim >=8.0 or Neovim >= 0.1.5
@@ -141,6 +161,7 @@ require'nvim-treesitter.configs'.setup {
     'json',
     'lua',
     'yaml',
+    'vim'
   },
   highlight = {
     enable = true,
@@ -279,7 +300,6 @@ require'nvim-tree'.setup {
   },
   view = {
     width   = 40,
-    height  = 30,
     hide_root_folder = false,
     side    = 'left',
     -- auto_resize = true,
@@ -292,6 +312,7 @@ require'nvim-tree'.setup {
   }
 }
 EOF
+let g:do_legacy_filetype = 1
 "========================================================
 " CONFIG ALE
 "========================================================
@@ -807,12 +828,6 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.eex,*.html.erb"
 "========================================================
 " MIGRATION OLD VIM CONFIGURATION
 "========================================================
-set cursorline
-set nowrap
-set title
-set formatoptions=tcqronj
-set showtabline=0
-
 " Map keyboard for Vim Tab /vim-buffet
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
@@ -826,14 +841,10 @@ let g:buffet_powerline_separators = 1
 let g:buffet_tab_icon = "\uf00a"
 let g:buffet_left_trunc_icon = "\uf0a8"
 let g:buffet_right_trunc_icon = "\uf0a9"
-" mouse interractive
-set mouse=nicr
-set smartindent
-autocmd BufWritePre * :%s/\s\+$//e " remove trailing whitespace
-let g:netrw_localrmdir='rm -r'
-filetype plugin indent on
 " Copy to 'clipboard registry'
 vmap <C-c> "*y
+" relative path
+nmap cp :let @+ = @%<cr>
 " Yank to the end of line
 nnoremap Y y$
 " Visual to the last char of line
@@ -848,8 +859,10 @@ nnoremap Jn i<CR><ESC>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
-" Toggle vim relative number
+" Vim show line number
 nmap <C-L><C-L> :set invrelativenumber<CR>
+nmap <C-L><C-N> :set number<CR>
+nmap <C-L><C-O> :set nonumber<CR>
 " Undo break points
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
@@ -858,22 +871,15 @@ inoremap ? ?<c-g>u
 inoremap - -<c-g>u
 inoremap ( (<c-g>u
 inoremap ) )<c-g>u
+
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
-" Get off my lawn
-" nnoremap <Left> :echoe "Use h"<CR>
-" nnoremap <Right> :echoe "Use l"<CR>
-" nnoremap <Up> :echoe "Use k"<CR>
-" nnoremap <Down> :echoe "Use j"<CR>
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-" vim folding configuration
-set foldmethod=indent
-" set foldmethod=marker
-set foldlevelstart=20
+
 " vim zoom
 noremap Zz <c-w>_ \| <c-w>\|
 noremap Zo <c-w>=
@@ -888,9 +894,11 @@ autocmd BufWritePre * %s/\s\+$//e
 nmap <C-r>mj :%!python3 -m json.tool<CR>
 " clear console
 nnoremap <silent> <CR> <ESC>:noh<CR>
-" change border style
-set fillchars=eob:\ ,fold:\ ,vert:\⏽
-" always no paste
-set nopaste
+
 " vim quick open replace text
 noremap <c-r><c-p> :%s<space>
+
+" quick alias for select buffer format
+nmap <S-f><S-r> :set ft=ruby<ESC>
+nmap <S-f><S-j> :set ft=json<ESC>
+nmap <S-f><S-m> :set ft=markdown<ESC>

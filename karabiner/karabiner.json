@@ -127,6 +127,18 @@
                         "manipulators": [
                             {
                                 "from": {
+                                    "key_code": "right_command"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": "left_control"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
                                     "key_code": "y",
                                     "modifiers": {
                                         "mandatory": [

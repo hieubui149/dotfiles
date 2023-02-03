@@ -5,6 +5,10 @@ alias heroprod='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2
 # ----------------------
 alias heroprod_eu='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.eu.ehrocks.com:443'
 # ----------------------
+# Alias for quick access dotfiles
+# ----------------------
+alias g2dotfiles='cd ~/$WORK_DIR/mine/dotfiles && vim'
+# ----------------------
 # Git Aliases
 # ----------------------
 alias ga='git add'
