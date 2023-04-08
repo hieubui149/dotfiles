@@ -6,25 +6,32 @@ function glf() { git log --all --grep="$1"; }
 
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-eval "$(rbenv init -)"
 
 bindkey -e
 bindkey jj vi-cmd-mode
 
-# if [ "$(sysctl -n sysctl.proc_translated)" = "1" ]; then
-#     local brew_path="/usr/local/homebrew/bin"
-#     local brew_opt_path="/usr/local/opt"
-#     local nvm_path="$HOME/.nvm-x86"
-# else
-local brew_path="/opt/homebrew/bin"
-local brew_opt_path="/opt/homebrew/opt"
-local nvm_path="$HOME/.nvm"
-# fi
+if [ "$(sysctl -n sysctl.proc_translated)" = "1" ]; then
+  local brew_path="/usr/local/homebrew/bin"
+  local brew_opt_path="/usr/local/opt"
+  local nvm_path="$HOME/.nvm-x86"
 
-export PATH="${brew_path}:${PATH}"
-export NVM_DIR="${nvm_path}"
+  export PATH="${brew_path}:${PATH}"
+  export NVM_DIR="${nvm_path}"
 
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# [ -s "${brew_opt_path}/nvm/nvm.sh" ] && . "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
-# [ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && . "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  [ -s "${brew_opt_path}/nvm/nvm.sh" ] && \. "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
+  [ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && \. "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+else
+  local brew_path="/opt/homebrew/bin"
+  local brew_opt_path="/opt/homebrew/opt"
+  local nvm_path="$HOME/.nvm"
+
+  export PATH="${brew_path}:${PATH}"
+  export NVM_DIR="${nvm_path}"
+
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+  [ -s "${brew_opt_path}/nvm/nvm.sh" ] && \. "${brew_opt_path}/nvm/nvm.sh"  # This loads nvm
+  [ -s "${brew_opt_path}/nvm/etc/bash_completion.d/nvm" ] && \. "${brew_opt_path}/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi

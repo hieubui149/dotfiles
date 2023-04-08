@@ -35,7 +35,7 @@ Plug 'tpope/vim-cucumber'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'tpope/vim-rake'
+" Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-projectionist'
 Plug 'mhinz/vim-signify'
@@ -50,7 +50,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'css', 'json', 'scss', 'typescript'] }
+  \ 'for': ['javascript', 'css', 'json', 'scss', 'typescript', 'ruby'] }
 Plug 'ianks/vim-tsx'
 Plug 'leafgarland/typescript-vim'
 Plug 'othree/eregex.vim'
@@ -58,16 +58,16 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'galooshi/vim-import-js'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
+Plug 'tpope/vim-endwise'
+" Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': ' arch -arm64 make' }
 Plug 'kdheepak/lazygit.nvim'
-" Plug 'tomlion/vim-solidity'
 Plug 'sindrets/winshift.nvim'
 Plug 'ellisonleao/glow.nvim'
 Plug 'itchyny/vim-cursorword'
-" Plug 'nvim-lua/plenary.nvim'
 call plug#end()
 syntax on
 filetype on
@@ -147,13 +147,20 @@ autocmd FileType typescript.tsx setlocal expandtab tabstop=2 shiftwidth=2 softta
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
 " == AUTOCMD END ================================
+"
+"========================================================
+" NEOVIM AUTO PAIRS
+"========================================================
+lua << EOF
+require("nvim-autopairs").setup {}
+EOF
 
 "========================================================
 " NEOVIM TREESISTER CONFIGURATION
 "========================================================
 lua <<EOF
 require('nvim-treesitter.install').compilers = { "cl", "clang", "gcc" }
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'bash',
     'dockerfile',
@@ -161,60 +168,20 @@ require'nvim-treesitter.configs'.setup {
     'json',
     'lua',
     'yaml',
-    'vim'
+    'vim',
+    'ruby'
   },
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = { 'markdown' },
+    additional_vim_regex_highlighting = true,
   },
   indent = {
     enable = true,
-    disable = { 'ruby', 'lua' }
-  }
-}
-
--- -- nvim-autopairs
-local npairs = require'nvim-autopairs'
-local Rule = require('nvim-autopairs.rule')
-npairs.setup{ check_ts = true }
-npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-
-local remap = vim.api.nvim_set_keymap
-_G.MUtils= {}
-MUtils.completion_confirm=function()
-  if vim.fn.pumvisible() ~= 0  then
-      return npairs.esc("<cr>")
-  else
-    return npairs.autopairs_cr()
-  end
-end
-remap('i' , '<CR>','v:lua.MUtils.completion_confirm()', {expr = true , noremap = true})
-
-npairs.add_rules(require('nvim-autopairs.rules.endwise-ruby'))
-npairs.add_rules {
-  Rule(' ', ' ')
-    :with_pair(function (opts)
-      local pair = opts.line:sub(opts.col - 1, opts.col)
-      return vim.tbl_contains({ '()', '[]', '{}' }, pair)
-    end),
-  Rule('( ', ' )')
-      :with_pair(function() return false end)
-      :with_move(function(opts)
-          return opts.prev_char:match('.%)') ~= nil
-      end)
-      :use_key(')'),
-  Rule('{ ', ' }')
-      :with_pair(function() return false end)
-      :with_move(function(opts)
-          return opts.prev_char:match('.%}') ~= nil
-      end)
-      :use_key('}'),
-  Rule('[ ', ' ]')
-      :with_pair(function() return false end)
-      :with_move(function(opts)
-          return opts.prev_char:match('.%]') ~= nil
-      end)
-      :use_key(']')
+    disable = { 'lua', 'ruby' }
+  },
+  endwise = {
+    enable = true,
+  },
 }
 EOF
 "========================================================
@@ -317,7 +284,7 @@ let g:do_legacy_filetype = 1
 " CONFIG ALE
 "========================================================
 let g:ale_fixers = {
-      \ 'ruby': ['rubocop'],
+      \ 'ruby': ['rufo'],
       \ 'javascript': ['prettier'],
       \ 'typescript': ['prettier'],
       \ 'python': ['black'],
@@ -326,7 +293,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
       \   'javascript': ['prettier', 'eslint'],
       \   'typescript': ['tsserver', 'tslint'],
-      \   'ruby': ['rubocop', 'ruby'],
+      \   'ruby': ['rubocop'],
       \   'go': ['golangci-lint', 'gofmt']
       \}
 let g:ale_sign_error   = '✘'
@@ -810,6 +777,19 @@ require('glow').setup({
 EOF
 nnoremap <Leader>gw :Glow<CR>
 "========================================================
+" GITHUB COPILOT CONFIG
+"========================================================
+let g:copilot_autostart = 1
+let g:copilot_autostart_delay = 5
+let g:copilot_autostart_filetypes = ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'ruby']
+
+imap <C-n> <Cmd>call copilot#Next()<CR>
+imap <C-p> <Cmd>call copilot#Previous()<CR>
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+highlight CopilotSuggestion guifg=#F02E6E ctermfg=203
+"========================================================
 " MISC CONFIG
 "========================================================
 "Autopair
@@ -828,6 +808,10 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.html.eex,*.html.erb"
 "========================================================
 " MIGRATION OLD VIM CONFIGURATION
 "========================================================
+" Open VIM configuration
+noremap <c-v><c-o> :vnew ~/Works/mine/dotfiles/vim/.vimrc<CR>
+noremap <c-v><c-i> :source ~/.vimrc<CR>
+
 " Map keyboard for Vim Tab /vim-buffet
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
@@ -902,3 +886,9 @@ noremap <c-r><c-p> :%s<space>
 nmap <S-f><S-r> :set ft=ruby<ESC>
 nmap <S-f><S-j> :set ft=json<ESC>
 nmap <S-f><S-m> :set ft=markdown<ESC>
+
+" VIM map for Ruby development
+nmap <C-r>; a::<ESC>
+nmap <C-r><C-[> cS{-<ESC>
+
+

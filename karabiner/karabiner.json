@@ -127,7 +127,7 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "right_command"
+                                    "key_code": "right_option"
                                 },
                                 "to": [
                                     {

@@ -120,3 +120,4 @@ alias start_docker_ocr="docker run --rm -it --name myapp -v "$PWD":/app -w /app 
 alias pip="pip3"
 alias python="python3"
 alias i="arch -x86_64"
+alias brew='/usr/local/bin/brew'
