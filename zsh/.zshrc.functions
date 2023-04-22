@@ -7,6 +7,20 @@ function glf() { git log --all --grep="$1"; }
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# set cursor to underline
+# Set cursor style (DECSCUSR), VT520.
+# 0  ⇒  blinking block.
+# 1  ⇒  blinking block (default).
+# 2  ⇒  steady block.
+# 3  ⇒  blinking underline.
+# 4  ⇒  steady underline.
+# 5  ⇒  blinking bar, xterm.
+# 6  ⇒  steady bar, xterm.
+_fix_cursor() {
+   echo -ne '\e[3 q'
+}
+precmd_functions+=(_fix_cursor)
+
 bindkey -e
 bindkey jj vi-cmd-mode
 
