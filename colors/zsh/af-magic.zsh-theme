@@ -18,27 +18,28 @@ function afmagic_dashes {
   fi
 }
 
-_ARCH=$(arch)
+# _ARCH=$(arch)
 
 # primary prompt: dashed separator, directory and vcs info
 # PS1="${FG[237]}\${(l.\$(afmagic_dashes)..•.)}%{$reset_color%}
 # ${FG[032]}%~\$(git_prompt_info)\$(hg_prompt_info) ${FG[105]}%(!.#.»)%{$reset_color%} "
-PS1="%F{#88C0D0} %(!.#.)%{$reset_color%} "
+# PS1="%F{#F94A29}%(!.#.)%{$reset_color%}%F{#FCE22A}%(!.#.)%{$reset_color%}%F{#30E3DF}%(!.#.)%{$reset_color%} "
+PS1="%F{#F94A29}%(!.#.)%{$reset_color%}%F{#FCE22A}%(!.#.)%{$reset_color%}%F{#30E3DF}%(!.#.)%{$reset_color%} "
 PS2="%{$fg[red]%}\ %{$reset_color%}"
 
 # right prompt: return code, virtualenv and context (user@host)
 # _ARCH=$(arch)
-RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+RPS1="%(?..%{$fg[red]%}%? ↵%{$reset_color%}) "
 if (( $+functions[virtualenv_prompt_info] )); then
   RPS1+='$(virtualenv_prompt_info)'
 fi
 RPS1+="%F{#81A1C1}[%~]\$(git_prompt_info)%F{#81A1C1} [%D{%d/%m/%Y} %T]%{$reset_color%}"
 
 # git settings
-ZSH_THEME_GIT_PROMPT_PREFIX=" %F{#8FBCBB}["
+ZSH_THEME_GIT_PROMPT_PREFIX=" %F{#88C0D0}["
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%F{#EBCB8B}*%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%F{#8FBCBB}]%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%F{#88C0D0}]%{$reset_color%}"
 
 # hg settings
 ZSH_THEME_HG_PROMPT_PREFIX=" ${FG[075]}(${FG[078]}"

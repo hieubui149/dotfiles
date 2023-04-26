@@ -9,6 +9,7 @@ alias heroprod_eu='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server he
 # ----------------------
 alias g2dotfiles='cd ~/$WORK_DIR/mine/dotfiles && vim'
 alias g2nvim='cd ~/.config/nvim && vim'
+alias g2nvimswap='cd ~/.local/state/nvim/swap'
 # ----------------------
 # Git Aliases
 # ----------------------
