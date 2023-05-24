@@ -1,0 +1,136 @@
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
+# hieubui ALL=(root) NOPASSWD: sha256:740b9e6aab46f8c499f0fc651ae1861d4ebe48b6e6a50296bf4a9ad879bbad93 /usr/local/bin/yabai --load-sa
+#
+# Grid <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+
+## HYPER == SHIFT + CMD + ALT + OPTION
+
+##############################
+# APP QUICK ACCESS
+##############################
+# open app with shortcuts
+ctrl + cmd + shift - i : open -a 'iTerm Rosetta'
+ctrl + cmd + shift - s : open -a Slack
+ctrl + cmd + shift - p : open -a Spotify
+ctrl + cmd + shift - e : open -a 'Microsoft Edge'
+ctrl + cmd + shift - t : open -a Telegram
+ctrl + cmd + shift - m : open -a Mail
+ctrl + cmd + shift - o : open -a Obsidian
+
+##############################
+# YABAI NORMAL CONFIGURATION
+##############################
+# toggle window border
+ctrl + cmd + shift - b : yabai -m window --toggle border
+# toggle window split type
+# ctrl + cmd + shift - e : yabai -m window --toggle split
+
+# stop/start/restart yabai
+ctrl + cmd - w : brew services stop yabai
+ctrl + cmd - s : brew services start yabai
+ctrl + cmd - r : brew services restart yabai
+
+##############################
+# YABAI FLOATING WINDOW
+##############################
+# toggle window float and centralize
+shift + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
+# toggle central
+shift + ctrl - c : yabai -m window --grid 4:4:1:1:2:2
+# toggle fullscreen
+shift + ctrl - f : yabai -m window --grid 1:1:0:0:1:1
+# fill top-half of screen
+shift + ctrl - k : yabai -m window --grid 2:1:0:0:2:1
+# fill bottom-half of screen
+shift + ctrl - j : yabai -m window --grid 2:1:0:1:2:1
+# fill left-half of screen
+shift + ctrl - h : yabai -m window --grid 1:2:0:0:1:1
+# fill right-half of screen
+shift + ctrl - l : yabai -m window --grid 1:2:1:0:1:1
+# fill 1/3 size of screen
+shift + ctrl - 1 : yabai -m window --grid 1:3:0:0:1:1
+shift + ctrl - 2 : yabai -m window --grid 1:3:1:0:1:1
+shift + ctrl - 3 : yabai -m window --grid 1:3:2:0:1:1
+# fill 2/3 left of screen
+shift + ctrl - left : yabai -m window --grid 1:3:0:0:2:1
+shift + ctrl - right : yabai -m window --grid 1:3:1:0:2:1
+
+# move window
+# move focused window to (100, 200)
+shift + ctrl - o: yabai -m window --move rel:100:0
+shift + ctrl - y: yabai -m window --move rel:-100:0
+shift + ctrl - u: yabai -m window --move rel:0:100
+shift + ctrl - i: yabai -m window --move rel:0:-100
+
+# increase window size
+shift + ctrl - a : yabai -m window --resize left:-100:0
+shift + ctrl - s : yabai -m window --resize bottom:0:100
+shift + ctrl - w : yabai -m window --resize top:0:-100
+shift + ctrl - d : yabai -m window --resize right:100:0
+
+# decrease window size
+shift + cmd - a : yabai -m window --resize left:100:0
+shift + cmd - s : yabai -m window --resize bottom:0:-100
+shift + cmd - w : yabai -m window --resize top:0:100
+shift + cmd - d : yabai -m window --resize right:-100:0
+
+##############################
+# YABAI DISPLAY & MONITOR
+##############################
+# send window to monitor and follow focus
+# 0x1E = ]
+shift + cmd - 0x1E  : yabai -m window --display recent; yabai -m display --focus recent
+shift + cmd - 1  : yabai -m window --display 1; yabai -m display --focus 1
+shift + cmd - 2  : yabai -m window --display 2; yabai -m display --focus 2
+
+# focus monitor
+# 0x1E = ]
+shift + ctrl - 0x1E  : yabai -m display --focus recent
+# 0x18 = =
+shift + ctrl - 0x18  : yabai -m display --focus 1
+# 0x1B = -
+shift + ctrl - 0x1B  : yabai -m display --focus 2
+
+
+
+
+
+
+
+
+# toggle window parent zoom
+# shift + ctrl - m : yabai -m window --toggle zoom-parent
+# toggle window fullscreen zoom
+# shift + ctrl - f : yabai -m window --toggle zoom-fullscreen
+
+# change window focus within space
+# ctrl + shift - u : yabai -m window --focus south
+# ctrl + shift - i : yabai -m window --focus north
+# ctrl + shift - y : yabai -m window --focus west
+# ctrl + shift - o : yabai -m window --focus east
+#
+# ctrl + shift - r : yabai -m window --focus recent
+# ctrl + shift - e : yabai -m window --swap prev
+# ctrl + shift - r : yabai -m window --focus recent
+
+# rotate layout clockwise
+# shift + ctrl - r : yabai -m space --rotate 270
+# flip along y-axis
+# hyper - y : yabai -m space --mirror y-axis
+# flip along x-axis
+# hyper - x : yabai -m space --mirror x-axis
+# balance out tree of windows (resize to occupy same area)
+# shift + ctrl - e : yabai -m space --balance
+
+# swap windows
+# shift + cmd - j : yabai -m window --swap south
+# shift + cmd - k : yabai -m window --swap north
+# shift + cmd - h : yabai -m window --swap west
+# shift + cmd - l : yabai -m window --swap east
+
+# move window and split
+# ctrl + cmd - j : yabai -m window --warp south
+# ctrl + cmd - k : yabai -m window --warp north
+# ctrl + cmd - h : yabai -m window --warp west
+# ctrl + cmd - l : yabai -m window --warp east
