@@ -95,4 +95,7 @@ return {
 
   -- Wilder for command line completion
   { 'gelguy/wilder.nvim' },
+
+  -- Marks
+  { 'chentoast/marks.nvim' },
 }
