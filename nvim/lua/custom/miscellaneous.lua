@@ -69,6 +69,9 @@ vim.g.lazygit_use_neovim_remote = 0 -- fallback to 0 if neovim-remote is not ins
 vim.keymap.set('n', '<leader>lg', ':LazyGit<CR>', { desc = 'Open [L]azy[G]it' })
 vim.keymap.set('n', '<leader>lgc', ':LazyGitConfig<CR>', { desc = 'Open [L]azy[G]it [C]onfig' })
 
+-- Map paste to register 0
+-- vim.keymap.set({ 'n', 'v' }, 'p', '"0p', { desc = '[P]aste from register 0', expr = true, silent = true })
+
 -- [[ Common configuration ]]
 autocmd('BufWritePre', { pattern = '*', command = "%s/\\s\\+$//e" })
 

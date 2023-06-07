@@ -536,6 +536,9 @@ require('custom/noice')
 -- [[ Configure wilder ]]
 require('custom/wilder')
 
+-- [[ Configure marks ]]
+require('custom/marks')
+
 -- [[ Configure Miscellaneous ]]
 require('custom/miscellaneous')
 
