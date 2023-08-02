@@ -295,6 +295,9 @@ require('nvim-treesitter.configs').setup {
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+  modules = {},
+  sync_install = false,
+  ignore_install = {},
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -417,6 +420,7 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
+  solargraph = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -472,24 +476,6 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    -- ['<Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -507,13 +493,10 @@ require('custom/github-copilot')
 require('custom/nvim-gomove')
 
 -- [[ Configure coc.nvim ]]
-require('custom/coc-nvim')
+-- require('custom/coc-nvim')
 
--- [[ Configure winshift ]]
-require('custom/winshift')
-
--- [[ Configure lualine ]]
--- require('custom/lualine')
+-- [[ Configure null-ls ]]
+require('custom/null-ls')
 
 -- [[ Configure indent-blankline ]]
 require('custom/indent-blankline')
