@@ -166,6 +166,14 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require("null-ls").setup()
+    end,
+    requires = { "nvim-lua/plenary.nvim" }
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -300,10 +308,14 @@ vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc =
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'ruby', 'markdown' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'ruby',
+    'markdown' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
+  modules = {},
+  sync_install = false,
+  ignore_install = {},
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -382,8 +394,14 @@ local on_attach = function(_, bufnr)
     if desc then
       desc = 'LSP: ' .. desc
     end
-
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  local vmap = function(keys, func, desc)
+    if desc then
+      desc = 'LSP: ' .. desc
+    end
+    vim.keymap.set('v', keys, func, { buffer = bufnr, desc = desc })
   end
 
   -- nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -412,6 +430,17 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+  nmap('<leader>nff', vim.lsp.buf.format, '[N]eovim [F]ormat [F]ile')
+
+  local range_formatting = function()
+    local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+    local end_row, _ = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+    vim.lsp.buf.format({
+      range = { ["start"] = { start_row, 0 }, ["end"] = { end_row, 0 } },
+      async = true,
+    })
+  end
+  vmap('<leader>nfr', range_formatting, '[N]eovim [F]ormat [R]ange')
 end
 
 -- Enable the following language servers
@@ -426,6 +455,11 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
+  solargraph = {
+    autoformat = false,
+    diagnostics = true,
+    completion = true,
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -461,7 +495,7 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
--- nvim-cmp setup
+-- [[ Setup nvim-cmp ]]
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
@@ -481,24 +515,6 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    -- ['<Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -514,15 +530,6 @@ require('custom/github-copilot')
 
 -- [[ Configure nvim-gomove ]]
 require('custom/nvim-gomove')
-
--- [[ Configure coc.nvim ]]
-require('custom/coc-nvim')
-
--- [[ Configure winshift ]]
-require('custom/winshift')
-
--- [[ Configure lualine ]]
--- require('custom/lualine')
 
 -- [[ Configure indent-blankline ]]
 require('custom/indent-blankline')

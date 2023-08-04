@@ -1,2 +1,5 @@
 nvim/lazy-lock.json
 raycast/extensions
+./zsh/zshrc.credentials
+karabiner/automatic_backups
+zsh/zshrc.credentials

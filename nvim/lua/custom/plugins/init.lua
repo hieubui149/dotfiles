@@ -50,18 +50,13 @@ return {
   } },
 
   -- Coc nvim
-  { 'neoclide/coc.nvim', branch = 'release' },
+  -- { 'neoclide/coc.nvim', branch = 'release' },
 
   -- Winshift
-  { 'sindrets/winshift.nvim', opts = {
-    highlight_moving_win = true,  -- Highlight the window being moved
-    moving_win_options = {
-      wrap = false,
-      cursorline = true,
-      cursorcolumn = true,
-      colorcolumn = "",
-    }
-  } },
+  -- { 'sindrets/winshift.nvim', opts = {
+  --     highlight_moving_win = true,  -- Highlight the window being moved
+  --   }
+  -- },
   {
     "tversteeg/registers.nvim",
     name = "registers",
@@ -82,7 +77,7 @@ return {
   }, dependencies = { "nvim-lua/plenary.nvim"} },
 
   -- Harpoon for marks
-  { 'ThePrimeagen/harpoon', opts = {}, dependencies = { "nvim-lua/plenary.nvim"} },
+  { 'ThePrimeagen/harpoon', opts = {}, dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- Noice for cmdline replacement with noitify
   {

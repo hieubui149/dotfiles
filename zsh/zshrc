@@ -1,5 +1,5 @@
-source zshrc.credentials
-source zshrc.aliases
-source zshrc.env
-source zshrc.functions
-source zshrc.loader
+source ~/.config/zsh/zshrc.credentials
+source ~/.config/zsh/zshrc.aliases
+source ~/.config/zsh/zshrc.env
+source ~/.config/zsh/zshrc.functions
+source ~/.config/zsh/zshrc.loader
