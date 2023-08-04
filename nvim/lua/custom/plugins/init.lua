@@ -98,4 +98,26 @@ return {
 
   -- Marks
   { 'chentoast/marks.nvim' },
+
+  {
+    "roobert/search-replace.nvim",
+    config = function()
+      require("search-replace").setup({
+        -- optionally override defaults
+        default_replace_single_buffer_options = "gcI",
+        default_replace_multi_buffer_options = "egcI",
+      })
+    end,
+  },
+
+  { "junegunn/fzf", build = "./install --bin" },
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- calling `setup` is optional for customization
+      require("fzf-lua").setup({})
+    end
+  },
 }

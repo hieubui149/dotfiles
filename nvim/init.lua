@@ -265,6 +265,15 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
 }
 
 -- Enable telescope fzf native, if installed
@@ -538,6 +547,12 @@ require('custom/wilder')
 
 -- [[ Configure marks ]]
 require('custom/marks')
+
+-- [[ Configure Search Replace ]]
+require('custom/search-replace')
+
+-- [[ Configure Fzf lua ]]
+require('custom/fzf-lua')
 
 -- [[ Configure Miscellaneous ]]
 require('custom/miscellaneous')
