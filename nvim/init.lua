@@ -166,13 +166,13 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require("null-ls").setup()
-    end,
-    requires = { "nvim-lua/plenary.nvim" }
-  },
+  -- {
+  --   'jose-elias-alvarez/null-ls.nvim',
+  --   config = function()
+  --     require("null-ls").setup()
+  --   end,
+  --   requires = { "nvim-lua/plenary.nvim" }
+  -- },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -308,11 +308,11 @@ vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc =
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'ruby',
+  ensure_installed = { 'go', 'lua', 'python', 'tsx', 'typescript', 'vimdoc', 'vim', 'ruby',
     'markdown' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-  auto_install = false,
+  auto_install = true,
   modules = {},
   sync_install = false,
   ignore_install = {},
@@ -416,7 +416,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
-  -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -560,6 +560,9 @@ require('custom/search-replace')
 
 -- [[ Configure Fzf lua ]]
 require('custom/fzf-lua')
+
+-- [[ Configure Any Jump ]]
+require('custom/any-jump')
 
 -- [[ Configure Miscellaneous ]]
 require('custom/miscellaneous')

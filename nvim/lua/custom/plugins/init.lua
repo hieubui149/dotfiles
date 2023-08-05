@@ -115,4 +115,6 @@ return {
       require("fzf-lua").setup({})
     end
   },
+
+  { 'pechorin/any-jump.vim' },
 }
