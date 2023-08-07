@@ -112,25 +112,8 @@ require('lazy').setup({
     },
   },
 
-  -- { -- Theme inspired by Atom
-  --   'navarasu/onedark.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
-  --   end,
-  -- },
-
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
-    opts = {
-      options = {
-        icons_enabled = false,
-        theme = 'nord',
-        -- component_separators = '|',
-        -- section_separators = '',
-      },
-    },
   },
 
   { -- Add indentation guides even on blank lines
@@ -417,6 +400,7 @@ local on_attach = function(_, bufnr)
   -- See `:help K` for why this keymap
   nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<leader>sd', vim.lsp.buf.signature_help, 'Signature Documentation')
+  -- vim.lsp.signature.enabled = false
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -525,6 +509,9 @@ cmp.setup {
 -- [[ Configure Nvim Tree ]]
 require('custom/nvim-tree')
 
+-- [[ Configure Nvim Tree ]]
+require('custom/lualine')
+
 -- [[ Configure Github Copilot ]]
 require('custom/github-copilot')
 
@@ -563,6 +550,9 @@ require('custom/fzf-lua')
 
 -- [[ Configure Any Jump ]]
 require('custom/any-jump')
+
+-- [[ Configure Alpha ]]
+require('custom/alpha-nvim')
 
 -- [[ Configure Miscellaneous ]]
 require('custom/miscellaneous')

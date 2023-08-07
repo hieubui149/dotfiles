@@ -117,4 +117,7 @@ return {
   },
 
   { 'pechorin/any-jump.vim' },
+
+  -- Dashboard
+  { 'goolord/alpha-nvim', event = "VimEnter" },
 }
