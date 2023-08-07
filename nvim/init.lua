@@ -437,13 +437,13 @@ require('custom.wilder')
 require('custom.marks')
 
 -- [[ Configure Search Replace ]]
-require('custom/search-replace')
+require('custom.search-replace')
 
 -- [[ Configure Fzf lua ]]
-require('custom/fzf-lua')
+require('custom.fzf-lua')
 
 -- [[ Configure Any Jump ]]
-require('custom/any-jump')
+require('custom.any-jump')
 
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')
