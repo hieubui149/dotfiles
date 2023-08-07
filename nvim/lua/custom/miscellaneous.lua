@@ -119,7 +119,3 @@ vim.keymap.set('n', '<c-l><c-o>', ':set nonumber<CR>', { desc = 'Hide [L]ine Num
 -- Vim config easy access
 vim.keymap.set('n', '<c-v><c-o>', ':vnew ~/.config/nvim/init.lua<CR>', { desc = 'Open n[V]im config in vertical pane' })
 vim.keymap.set('n', '<c-v><c-i>', ':source ~/.config/nvim/init.lua<CR>', { desc = 'Reload n[V]im config in vertical pane' })
-
--- Vim surround quick access
-vim.keymap.set('n', '<leader>\'', 'cs\'"', { desc = 'Convert single quote to double quote' })
-vim.keymap.set('n', '<leader>"', 'cs"\'', { desc = 'Convert double quote to single quote' })

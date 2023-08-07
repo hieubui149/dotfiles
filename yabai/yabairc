@@ -5,7 +5,6 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                float
 yabai -m config window_border                off
-yabai -m config window_border_width          off
 yabai -m config active_window_border_color   0xff89c0d0
 yabai -m config normal_window_border_color   0xff505050
 yabai -m config active_window_opacity        1.0
@@ -35,5 +34,9 @@ yabai -m config window_gap                   10
 # yabai -m rule --add app=Spotify manage=off
 # yabai -m rule --add app=Photoshop manage=off
 # yabai -m rule --add app=Illustrator  manage=off
+# yabai -m rule --add app="iTerm Rosetta" manage=off
+# yabai -m rule --add app=Mail manage=off
+# yabai -m rule --add app=Obsidian manage=off
+# yabai -m rule --add app=Steam manage=off
 
 echo "yabai configuration loaded.."
