@@ -139,6 +139,14 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require("null-ls").setup()
+    end,
+    requires = { "nvim-lua/plenary.nvim" }
+  },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -432,8 +440,11 @@ require('custom.fzf-lua')
 -- [[ Configure Any Jump ]]
 require('custom.any-jump')
 
+-- [[ Configure Null LS ]]
+require('custom.null-ls')
+
 -- [[ Configure Alpha ]]
-require('custom/alpha-nvim')
+require('custom.dashboard-nvim')
 
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')

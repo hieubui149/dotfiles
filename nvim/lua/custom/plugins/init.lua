@@ -119,5 +119,9 @@ return {
   { 'pechorin/any-jump.vim' },
 
   -- Dashboard
-  { 'goolord/alpha-nvim', event = "VimEnter" },
+  {
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    dependencies = { {'nvim-tree/nvim-web-devicons' } }
+  },
 }
