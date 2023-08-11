@@ -1,7 +1,20 @@
+local custom_themes = require'lualine.themes.papercolor_dark'
+-- local colors = {
+--   nord1  = '#3B4252',
+--   nord3  = '#4C566A',
+--   nord5  = '#E5E9F0',
+--   nord6  = '#ECEFF4',
+--   nord7  = '#8FBCBB',
+--   nord8  = '#88C0D0',
+--   nord13 = '#EBCB8B',
+-- }
+-- custom_themes.normal.c.fg = colors.nord7
+-- custom_themes.normal.c.bg = colors.nord7
+
 require('lualine').setup({
   options = {
     icons_enabled = true,
-    theme = 'papercolor_dark',
+    theme = custom_themes,
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
@@ -16,5 +29,21 @@ require('lualine').setup({
       tabline = 1000,
       winbar = 1000,
     },
-  }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'filename'},
+    lualine_c = {''},
+    lualine_x = {'branch', 'diff'},
+    lualine_y = {'filetype'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
 })
