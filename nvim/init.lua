@@ -174,9 +174,9 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
-vim.cmd.colorscheme 'nightfly'
+vim.cmd.colorscheme 'onenord'
+-- vim.cmd.colorscheme 'embark'
 vim.cmd('hi clear Comment')
-vim.g.nightflyTransparent = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -396,6 +396,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- [[ Configure theme configuration ]]
+require('custom.theme')
 
 -- [[ Configure Nvim Tree ]]
 require('custom.nvim-tree')

@@ -1,4 +1,4 @@
-local custom_themes = require'lualine.themes.nightfly'
+local custom_themes = require'lualine.themes.onenord'
 -- local colors = {
 --   nord1  = '#3B4252',
 --   nord3  = '#4C566A',

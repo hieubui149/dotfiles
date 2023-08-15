@@ -3,7 +3,8 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+  { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
+  { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
 
   -- File Explorer
   { 'nvim-tree/nvim-tree.lua' },
@@ -126,4 +127,7 @@ return {
     event = 'VimEnter',
     dependencies = { {'nvim-tree/nvim-web-devicons' } }
   },
+
+  -- Color display instead of codes
+  { 'norcalli/nvim-colorizer.lua' },
 }
