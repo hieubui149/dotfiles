@@ -174,7 +174,9 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
-vim.cmd.colorscheme 'embark'
+vim.cmd.colorscheme 'nightfly'
+vim.cmd('hi clear Comment')
+vim.g.nightflyTransparent = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
