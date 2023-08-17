@@ -157,6 +157,17 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'nvimdev/lspsaga.nvim',
+    config = function()
+      require('lspsaga').setup({})
+    end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons'     -- optional
+    }
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -400,11 +411,14 @@ cmp.setup {
 -- [[ Configure theme configuration ]]
 require('custom.theme')
 
+-- [[ Configure lsp saga ]]
+require('custom.lspsaga')
+
 -- [[ Configure Nvim Tree ]]
 require('custom.nvim-tree')
 
 -- [[ Configure Nvim Tree ]]
-require('custom/lualine')
+require('custom.lualine')
 
 -- [[ Configure Github Copilot ]]
 require('custom.github-copilot')
