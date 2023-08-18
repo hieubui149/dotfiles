@@ -298,6 +298,18 @@ local on_attach = function(_, bufnr)
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('gv', function()
+      vim.cmd('vsplit')
+      vim.lsp.buf.definition()
+    end,
+    '[G]oto [D]efinition [V]split'
+  )
+  nmap('gh', function()
+      vim.cmd('split')
+      vim.lsp.buf.definition()
+    end,
+    '[G]oto [D]efinition [H]split'
+  )
 
   -- See `:help K` for why this keymap
   nmap('<leader>hd', vim.lsp.buf.hover, 'Hover Documentation')
@@ -309,7 +321,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    print(vim.inspectlvim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
