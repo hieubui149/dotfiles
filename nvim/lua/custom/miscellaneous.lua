@@ -35,7 +35,8 @@ vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevelstart = 20
-vim.opt.fillchars = { eob = ' ' ,fold = ' ' ,vert = '⏽' }
+-- vim.opt.fillchars = { eob = ' ' ,fold = ' ' ,vert = '⏽' }
+vim.opt.fillchars = { eob = ' ' ,fold = ' ' }
 vim.opt.autoindent = true
 vim.opt.breakindent = true
 vim.opt.smartindent = true

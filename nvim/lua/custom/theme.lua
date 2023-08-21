@@ -22,16 +22,21 @@
 --   light_purple = "#B48EAD",
 --   none = "NONE",
 -- }
-require('onenord').setup({
-  borders = true,
-  fade_nc = false,
-  disable = {
-    background = true, -- Disable setting the background color
-    cursorline = false, -- Disable the cursorline
-    eob_lines = true, -- Hide the end-of-buffer lines
-  },
-  custom_colors = {
-    purple = "#bd82d1",
-    light_purple = "#d693ed",
-  },
-})
+-- require('onenord').setup({
+--   borders = true,
+--   fade_nc = false,
+--   disable = {
+--     background = true, -- Disable setting the background color
+--     cursorline = false, -- Disable the cursorline
+--     eob_lines = true, -- Hide the end-of-buffer lines
+--   },
+--   custom_colors = {
+--     purple = "#bd82d1",
+--     light_purple = "#d693ed",
+--   },
+-- })
+-- vim.cmd.colorscheme 'onenord'
+
+-- vim.cmd.colorscheme 'themer_everforest'
+vim.cmd.colorscheme 'themer_nord'
+vim.cmd('hi clear Comment')

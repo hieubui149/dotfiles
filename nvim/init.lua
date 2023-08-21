@@ -185,10 +185,6 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
-vim.cmd.colorscheme 'onenord'
--- vim.cmd.colorscheme 'embark'
-vim.cmd('hi clear Comment')
-
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
@@ -321,7 +317,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
-    print(vim.inspectlvim.lsp.buf.list_workspace_folders()))
+    print(vim.inspectlvim.lsp.buf.list_workspace_folders())
   end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
@@ -473,6 +469,9 @@ require('custom.any-jump')
 
 -- [[ Configure Null LS ]]
 require('custom.null-ls')
+
+-- [[ Configure symbols outline ]]
+require('custom.symbols-outline')
 
 -- [[ Configure Alpha ]]
 require('custom.dashboard-nvim')

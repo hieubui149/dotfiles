@@ -5,6 +5,23 @@
 return {
   { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
   { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
+  {
+    "themercorp/themer.lua",
+    config = function()
+    require("themer").setup({
+      colorscheme = "rose_pine",
+      transparent = true,
+      dim_inactive = true,
+      styles = {
+        ["function"] = {},
+        functionbuiltin = {},
+        variable = {},
+        variableBuiltIn = {},
+        parameter  = {},
+      },
+    })
+    end
+  },
 
   -- File Explorer
   { 'nvim-tree/nvim-tree.lua' },
@@ -130,4 +147,11 @@ return {
 
   -- Color display instead of codes
   { 'norcalli/nvim-colorizer.lua' },
+
+  -- Lsp outline
+  { 'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
+    end
+  },
 }
