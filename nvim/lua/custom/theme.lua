@@ -1,4 +1,4 @@
--- onenord theme
+-- ONENORD THEME
 -- local colors = require("onenord.colors").load()
 -- local colors = {
 --   fg = "#C8D0E0",
@@ -36,7 +36,11 @@
 --   },
 -- })
 -- vim.cmd.colorscheme 'onenord'
+--
 
--- vim.cmd.colorscheme 'themer_everforest'
-vim.cmd.colorscheme 'themer_nord'
+-- EVERFOREST THEME
+vim.g.everforest_transparent_background = 1
+vim.g.everforest_dim_inactive_windows = 1
+vim.cmd.colorscheme 'everforest'
+
 vim.cmd('hi clear Comment')

@@ -1,4 +1,4 @@
-local custom_themes = require'lualine.themes.onenord'
+local custom_themes = require'lualine.themes.everforest'
 -- local colors = {
 --   nord1  = '#3B4252',
 --   nord3  = '#4C566A',
@@ -16,7 +16,7 @@ require('lualine').setup({
     icons_enabled = true,
     theme = custom_themes,
     -- component_separators = { left = '', right = ''},
-    -- section_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = {
       statusline = {},
       winbar = {},

@@ -3,25 +3,9 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
+  -- { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
   { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
-  {
-    "themercorp/themer.lua",
-    config = function()
-    require("themer").setup({
-      colorscheme = "rose_pine",
-      transparent = true,
-      dim_inactive = true,
-      styles = {
-        ["function"] = {},
-        functionbuiltin = {},
-        variable = {},
-        variableBuiltIn = {},
-        parameter  = {},
-      },
-    })
-    end
-  },
+  { 'sainnhe/everforest', lazy = false, priority = 1000 },
 
   -- File Explorer
   { 'nvim-tree/nvim-tree.lua' },
