@@ -34,8 +34,8 @@ setw -g window-status-activity-style "none"
 setw -g window-status-separator ""
 setw -g window-status-style "none,fg=#15d69e,bg=colour236"
 # [COLORIZE]
-set -g window-status-format "#[fg=#2d353b,bg=#9da9a0] #I.#[fg=#2d353b,bg=#9da9a0]#W #F #[fg=#2d353b,bg=#9da9a0]▕"
-set -g window-status-current-format "#[fg=#2d353b,bg=#a7c080] ⚡#[fg=#2d353b,bg=#a7c080]#[fg=#2d353b,bg=#a7c080]#W #F #[fg=#a7c080,bg=#2d353b]"
+set -g window-status-format "#[fg=#2d353b,bg=#9da9a0] #I  #[fg=#2d353b,bg=#9da9a0]#W #F #[fg=#2d353b,bg=#9da9a0]▕"
+set -g window-status-current-format "#[fg=#2d353b,bg=#a7c080]   #[fg=#2d353b,bg=#a7c080]#[fg=#2d353b,bg=#a7c080]#W #F #[fg=#a7c080,bg=#2d353b]"
 # [END]----------- THEME CONFIGURATION ------------------
 # {
 #       \ 'fg':         ['#d3c6aa',   '223'],
