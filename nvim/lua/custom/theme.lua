@@ -38,9 +38,31 @@
 -- vim.cmd.colorscheme 'onenord'
 --
 
+-- require("themery").setup({
+--   themes = {{
+--     name = "Gruvbox dark",
+--     colorscheme = "gruvbox",
+--     before = [[
+--       -- All this block will be executed before apply "set colorscheme"
+--       vim.opt.background = "dark"
+--     ]],
+--   },
+--   {
+--     name = "Everforest",
+--     colorscheme = "everforest",
+--     before = [[
+--       vim.opt.background = "dark"
+--     ]],
+--     after = [[-- Same as before, but after if you need it]]
+--   }},
+--   -- themeConfigFile = "~/.config/nvim/lua/settings/theme.lua",
+--   livePreview = true,
+-- })
+
 -- EVERFOREST THEME
 vim.g.everforest_transparent_background = 1
 vim.g.everforest_dim_inactive_windows = 1
 vim.cmd.colorscheme 'everforest'
 
-vim.cmd('hi clear Comment')
+-- overcome the italic issue causes solid background in neovim
+vim.api.nvim_set_hl(0, "Comment", { fg = "#859289" })

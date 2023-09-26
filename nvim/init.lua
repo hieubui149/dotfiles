@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', tag = "legacy",opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -114,10 +114,6 @@ require('lazy').setup({
 
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-  },
-
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
   },
 
   -- "gc" to comment visual regions/lines
@@ -434,9 +430,6 @@ require('custom.github-copilot')
 -- [[ Configure nvim-gomove ]]
 require('custom.nvim-gomove')
 
--- [[ Configure indent-blankline ]]
-require('custom.indent-blankline')
-
 -- [[ Configure registers ]]
 require('custom.registers')
 
@@ -475,6 +468,12 @@ require('custom.symbols-outline')
 
 -- [[ Configure Alpha ]]
 require('custom.dashboard-nvim')
+
+-- [[ Configure Nvim Move ]]
+require('custom.move-nvim')
+
+-- [[ Configure Hlchunk ]]
+require('custom.hlchunk')
 
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')

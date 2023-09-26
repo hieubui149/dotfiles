@@ -6,6 +6,9 @@ return {
   -- { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
   { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
   { 'sainnhe/everforest', lazy = false, priority = 1000 },
+  -- 'Yazeed1s/oh-lucy.nvim'
+
+  { 'zaldih/themery.nvim' },
 
   -- File Explorer
   { 'nvim-tree/nvim-tree.lua' },
@@ -14,6 +17,7 @@ return {
 
   -- Easy Motion
   { 'phaazon/hop.nvim', branch = 'v2' },
+  { 'fedepujol/move.nvim' },
 
   -- Surround
   { 'kylechui/nvim-surround' },
@@ -74,7 +78,7 @@ return {
   -- Vim movement + motion with brackets
   { 'echasnovski/mini.bracketed', version = '*' },
   { 'echasnovski/mini.animate', version = '*' },
-  { 'echasnovski/mini.indentscope', version = '*' },
+  -- { 'echasnovski/mini.indentscope', version = '*' },
 
   { "RutaTang/quicknote.nvim", config={
     mode = "resident"
@@ -137,5 +141,10 @@ return {
     config = function()
       require("symbols-outline").setup()
     end
+  },
+
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
   },
 }

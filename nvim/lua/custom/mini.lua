@@ -15,6 +15,6 @@ require('mini.animate').setup({
   },
 })
 
-require('mini.indentscope').setup({
-  symbol = '|',
-})
+-- require('mini.indentscope').setup({
+--   symbol = '║',
+-- })
