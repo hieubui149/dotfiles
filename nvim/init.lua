@@ -475,6 +475,12 @@ require('custom.move-nvim')
 -- [[ Configure Hlchunk ]]
 require('custom.hlchunk')
 
+-- [[ Configure Cody ]]
+-- require('custom.cody')
+
+-- [[ Configure Flash nvim ]]
+-- require('custom.flash-nvim')
+
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')
 

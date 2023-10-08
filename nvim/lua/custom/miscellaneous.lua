@@ -1,25 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommands
 
--- [[ Configure Hop ]]
--- Doc :help hop
-local hop = require('hop')
-hop.setup()
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, {remap=true})
-vim.keymap.set('', 'F', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, {remap=true})
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, {remap=true})
-vim.keymap.set('', 'T', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, {remap=true})
--- Keymap for HOP
-vim.keymap.set('n', '<c-h>p', ':HopPattern<CR>', { desc = '' })
-
 -- [[ Configure Surround ]]
 -- Doc :help nvim-surround
 require("nvim-surround").setup()
