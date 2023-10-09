@@ -1,25 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommands
 
--- [[ Configure Hop ]]
--- Doc :help hop
-local hop = require('hop')
-hop.setup()
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, {remap=true})
-vim.keymap.set('', 'F', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, {remap=true})
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, {remap=true})
-vim.keymap.set('', 'T', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, {remap=true})
--- Keymap for HOP
-vim.keymap.set('n', '<c-h>p', ':HopPattern<CR>', { desc = '' })
-
 -- [[ Configure Surround ]]
 -- Doc :help nvim-surround
 require("nvim-surround").setup()
@@ -57,7 +37,7 @@ vim.g.ruler = true
 autocmd('Filetype', { pattern = 'python', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4' })
 autocmd('Filetype', { pattern = 'sql', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4' })
 autocmd('Filetype', { pattern = 'lua', command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2' })
-autocmd('Filetype', { pattern = 'typescript', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4 formatprg=prettier\\ --parser\\ typescript' })
+autocmd('Filetype', { pattern = 'typescript', command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 formatprg=prettier\\ --parser\\ typescript' })
 autocmd('Filetype', { pattern = 'typescript.tsx', command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2 formatprg=prettier\\ --parser\\ typescript' })
 
 -- [[ Configure lazygit ]]
