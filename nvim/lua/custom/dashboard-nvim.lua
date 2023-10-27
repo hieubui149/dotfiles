@@ -13,7 +13,14 @@ require('dashboard').setup {
       },
       {
         icon_hl = '@variable',
-        desc = ' Files',
+        desc = ' Files',
+        group = 'Label',
+        action = 'NvimTreeToggle',
+        key = 'q',
+      },
+      {
+        icon_hl = '@variable',
+        desc = ' Search',
         group = 'Label',
         action = 'Telescope find_files',
         key = 'f',

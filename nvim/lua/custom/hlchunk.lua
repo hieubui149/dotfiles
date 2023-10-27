@@ -2,11 +2,23 @@ require('hlchunk').setup({
   context = {
     use_treesitter = true,
     chars = { "│", "¦", "┆", "┊", },
+    support_filetypes = {
+      "*.lua",
+      "*.js",
+      "*.ts",
+      "*.rb",
+    },
   },
   blank = {
     enable = false,
     use_treesitter = false,
     chars = { "│", "¦", "┆", "┊", },
+    support_filetypes = {
+      "*.lua",
+      "*.js",
+      "*.ts",
+      "*.rb",
+    },
   },
   indent = {
     enable = true,
@@ -14,6 +26,12 @@ require('hlchunk').setup({
     chars = { "│", "¦", "┆", "┊", },
     style = {
       { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
+    },
+    support_filetypes = {
+      "*.lua",
+      "*.js",
+      "*.ts",
+      "*.rb",
     },
   },
   chunk = {
