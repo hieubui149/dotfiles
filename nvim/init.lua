@@ -135,14 +135,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require("null-ls").setup()
-    end,
-    requires = { "nvim-lua/plenary.nvim" }
-  },
-
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -320,7 +312,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-  nmap('<leader>nff', vim.lsp.buf.format, '[N]eovim [F]ormat [F]ile')
+  -- nmap('<leader>nff', vim.lsp.buf.format, '[N]eovim [F]ormat [F]ile')
 
   local range_formatting = function()
     local start_row, _ = unpack(vim.api.nvim_buf_get_mark(0, "<"))
@@ -330,7 +322,7 @@ local on_attach = function(_, bufnr)
       async = true,
     })
   end
-  vmap('<leader>nfr', range_formatting, '[N]eovim [F]ormat [R]ange')
+  -- vmap('<leader>nfr', range_formatting, '[N]eovim [F]ormat [R]ange')
 end
 
 -- Enable the following language servers
@@ -339,12 +331,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
-
+  tsserver = {},
   solargraph = {
     autoformat = false,
     diagnostics = true,
@@ -460,9 +447,6 @@ require('custom.fzf-lua')
 -- [[ Configure Any Jump ]]
 require('custom.any-jump')
 
--- [[ Configure Null LS ]]
-require('custom.null-ls')
-
 -- [[ Configure symbols outline ]]
 require('custom.symbols-outline')
 
@@ -474,6 +458,9 @@ require('custom.move-nvim')
 
 -- [[ Configure Hlchunk ]]
 require('custom.hlchunk')
+
+-- [[ Configure conform ]]
+require('custom.conform')
 
 -- [[ Configure Cody ]]
 -- require('custom.cody')

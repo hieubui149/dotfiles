@@ -1,10 +1,12 @@
 require('lspsaga').setup({
   symbol_in_winbar = {
     separator = ' › ',
-    enable = true
+    enable = true,
+    color_mode = true,
+    hide_keyword = true,
   },
   lightbulb = {
-    enabled = true,
+    enabled = false,
     virtual_text = false
   },
 })
