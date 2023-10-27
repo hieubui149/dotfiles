@@ -462,6 +462,12 @@ require('custom.hlchunk')
 -- [[ Configure conform ]]
 require('custom.conform')
 
+-- [[ Configure Cody ]]
+-- require('custom.cody')
+
+-- [[ Configure Flash nvim ]]
+-- require('custom.flash-nvim')
+
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')
 

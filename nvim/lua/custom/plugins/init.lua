@@ -28,6 +28,7 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
+
   { 'fedepujol/move.nvim' },
 
   -- Surround
@@ -160,4 +161,12 @@ return {
   },
 
   { "stevearc/conform.nvim" },
+  -- {
+  --   "sourcegraph/sg.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --
+  --   -- If you have a recent version of lazy.nvim, you don't need to add this!
+  --   build = "nvim -l build/init.lua",
+  -- },
+  --
 }
