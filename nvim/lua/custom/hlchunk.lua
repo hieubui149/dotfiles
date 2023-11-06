@@ -32,7 +32,7 @@ require('hlchunk').setup({
       left_bottom = "┗",
       right_arrow = "▶",
     },
-    style = "#a7c080",
+    style = "#82aaff",
     error_sign = true,
     textobject = "",
     max_file_size = 1024 * 1024,
@@ -40,7 +40,7 @@ require('hlchunk').setup({
   line_num = {
     enable = true,
     use_treesitter = true,
-    style = "#a7c080",
+    style = "#82aaff",
     support_filetypes = {
       "*.lua",
       "*.js",

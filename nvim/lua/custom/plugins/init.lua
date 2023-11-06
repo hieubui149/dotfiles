@@ -6,6 +6,7 @@ return {
   -- { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
   { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
   { 'sainnhe/everforest', lazy = false, priority = 1000 },
+  { 'folke/tokyonight.nvim', lazy = false, priority = 1000 },
   -- 'Yazeed1s/oh-lucy.nvim'
 
   { 'zaldih/themery.nvim' },
