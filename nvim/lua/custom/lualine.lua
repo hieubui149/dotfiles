@@ -1,4 +1,6 @@
-local custom_themes = require'lualine.themes.everforest'
+-- local custom_themes = require'lualine.themes.everforest'
+local custom_themes = require'lualine.themes.tokyonight'
+
 -- local colors = {
 --   nord1  = '#3B4252',
 --   nord3  = '#4C566A',
