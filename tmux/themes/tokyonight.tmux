@@ -23,7 +23,7 @@ set -g status-bg "#2f334d"
 
 # ** Pane Status
 # [COLORIZE]
-set -g pane-border-style "fg=#d3c6aa"
+set -g pane-border-style "fg=#828bb8"
 set -g pane-active-border-style "fg=#82aaff,bold"
 
 setw -g pane-border-status "bottom"
