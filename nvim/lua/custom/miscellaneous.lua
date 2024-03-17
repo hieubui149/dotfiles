@@ -9,7 +9,7 @@ vim.g.move_key_modifier = 'C'
 
 --
 vim.opt.relativenumber = true
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '120'
 vim.opt.encoding = 'utf8'
 vim.opt.confirm = true
 vim.opt.cursorline = true

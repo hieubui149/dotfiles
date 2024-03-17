@@ -98,7 +98,7 @@ return {
   }, dependencies = { "nvim-lua/plenary.nvim"} },
 
   -- Harpoon for marks
-  { 'ThePrimeagen/harpoon', opts = {}, dependencies = { "nvim-lua/plenary.nvim" } },
+  -- { 'ThePrimeagen/harpoon', opts = {}, dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- Noice for cmdline replacement with noitify
   {
@@ -170,4 +170,16 @@ return {
   --   build = "nvim -l build/init.lua",
   -- },
   --
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    dependencies = {
+      { "github/copilot.vim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    build = function()
+      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
+    end,
+    event = "VeryLazy",
+  },
 }
