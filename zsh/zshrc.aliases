@@ -53,10 +53,10 @@ alias grst='git reset --hard'
 # ----------------------
 # Alias for local kafka
 # ----------------------
-alias kafka-start='cd ~/works/standalone-services/kafka/ && docker-compose up'
-alias kafka-stop='cd ~/works/standalone-services/kafka/ && docker-compose down'
-alias kafka-consumer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
-alias kafka-producer='~/works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
+alias kafka-start='cd ~/Works/standalone-services/kafka/ && docker-compose up'
+alias kafka-stop='cd ~/Works/standalone-services/kafka/ && docker-compose down'
+alias kafka-consumer='~/Works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-consumer.sh -bootstrap-server localhost:9092 --topic'
+alias kafka-producer='~/Works/standalone-services/kafka/kafka_2.12-2.2.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic'
 # ----------------------
 # Alias for starting macvim faster
 # ----------------------

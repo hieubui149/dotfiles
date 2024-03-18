@@ -61,6 +61,8 @@ shift + cmd - 3 : yabai -m window --grid 3:1:0:2:1:1
 # fill 2/3 left of screen
 shift + ctrl - left : yabai -m window --grid 1:3:0:0:2:1
 shift + ctrl - right : yabai -m window --grid 1:3:1:0:2:1
+shift + cmd - up : yabai -m window --grid 3:1:0:0:1:2
+shift + cmd - down : yabai -m window --grid 3:1:0:1:1:2
 
 # move window
 # move focused window to (100, 200)
@@ -86,11 +88,12 @@ shift + cmd - d : yabai -m window --resize right:-100:0
 ##############################
 # send window to monitor and follow focus
 # 0x1E = ]
-shift + cmd - 0x1E : yabai -m window --display recent; yabai -m display --focus recent; yabai -m window --grid 1:1:0:0:1:1
 # 0x21 = [
-shift + cmd - 0x21 : yabai -m window --display recent; yabai -m display --focus recent; yabai -m window --grid 4:4:1:1:2:2
-# shift + cmd - 1 : yabai -m window --display 1; yabai -m display --focus 1
-# shift + cmd - 2 : yabai -m window --display 2; yabai -m display --focus 2
+shift + cmd - 0x1E : yabai -m window --display recent; yabai -m display --focus recent; yabai -m window --grid 1:1:0:0:1:1
+shift + cmd - 0x21 : yabai -m window --display recent; yabai -m display --focus recent
+
+shift + cmd - 1 : yabai -m window --display 1; yabai -m display --focus 1
+shift + cmd - 2 : yabai -m window --display 2; yabai -m display --focus 2
 
 # focus monitor
 # 0x1E = ]
