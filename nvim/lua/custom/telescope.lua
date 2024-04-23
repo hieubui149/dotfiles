@@ -14,10 +14,13 @@ require('telescope').setup {
   },
   pickers = {
     grep_string = {
-      theme = "dropdown",
+      theme = "ivy",
     },
     buffers = {
       theme = "ivy"
+    },
+    colorscheme = {
+      theme = "dropdown"
     },
   },
 }
@@ -43,3 +46,4 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 'Telescope [R]esume' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
+vim.keymap.set('n', '<leader>sc', require('telescope.builtin').colorscheme, { desc = '[S]earch [C]olorScheme' })

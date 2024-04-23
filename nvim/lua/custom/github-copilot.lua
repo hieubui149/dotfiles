@@ -46,15 +46,6 @@ require("CopilotChat").setup {
     Wording = { prompt = "Please improve the grammar and wording of the following text." },
     Concise = { prompt = "Please rewrite the following text to make it more concise." },
   },
-  -- default mappings
-  mappings = {
-    close = 'q',
-    reset = '<C-l>',
-    complete = '<Tab>',
-    submit_prompt = '<CR>',
-    accept_diff = '<C-y>',
-    show_diff = '<C-d>',
-  },
 }
 vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
 vim.keymap.set({ 'n', 'v' }, '<leader>ccb', '<cmd>CopilotChatBuffer<cr>', { desc = "CopilotChat - Chat with current buffer" })

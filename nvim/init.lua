@@ -343,6 +343,13 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  gopls = {
+    analyses = {
+      unusedparams = true,
+      unreachable = false,
+    },
+    staticcheck = true,
+  },
 }
 
 -- Setup neovim lua configuration
@@ -432,11 +439,11 @@ require('custom.harpoon')
 -- [[ Configure noice ]]
 require('custom.noice')
 
+require('custom.marks')
 -- [[ Configure wilder ]]
 require('custom.wilder')
 
 -- [[ Configure marks ]]
-require('custom.marks')
 
 -- [[ Configure Search Replace ]]
 require('custom.search-replace')
@@ -461,6 +468,9 @@ require('custom.hlchunk')
 
 -- [[ Configure conform ]]
 require('custom.conform')
+
+-- [[ Configure nvim ufo ]]
+require('custom.nvim-ufo')
 
 -- [[ Configure Cody ]]
 -- require('custom.cody')

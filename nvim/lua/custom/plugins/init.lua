@@ -3,13 +3,10 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  -- { 'kvrohit/rasmus.nvim', lazy = false, priority = 1000 },
   { 'rmehri01/onenord.nvim', lazy = false, priority = 1000 },
   { 'sainnhe/everforest', lazy = false, priority = 1000 },
   { 'folke/tokyonight.nvim', lazy = false, priority = 1000 },
-  -- 'Yazeed1s/oh-lucy.nvim'
-
-  { 'zaldih/themery.nvim' },
+  { 'nordtheme/vim', lazy = false, priority = 1000 },
 
   -- File Explorer
   { 'nvim-tree/nvim-tree.lua' },
@@ -29,6 +26,10 @@ return {
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
+
+  -- Fold
+  { 'kevinhwang91/promise-async' },
+  { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' },
 
   { 'fedepujol/move.nvim' },
 
@@ -160,6 +161,8 @@ return {
     "shellRaining/hlchunk.nvim",
     event = { "UIEnter" },
   },
+
+  { "fatih/vim-go" },
 
   { "stevearc/conform.nvim" },
   -- {

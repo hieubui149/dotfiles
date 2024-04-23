@@ -34,6 +34,7 @@ vim.g.ruler = true
 -- vim.api.nvim_command('filetype indent on')
 
 -- [[ Configure space stop by language ]]
+autocmd('Filetype', { pattern = 'go', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4' })
 autocmd('Filetype', { pattern = 'python', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4' })
 autocmd('Filetype', { pattern = 'sql', command = 'setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4' })
 autocmd('Filetype', { pattern = 'lua', command = 'setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2' })

@@ -1,7 +1,7 @@
 # Use alias for Hero Cli Au
-alias herostag='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_STG herocli --server hero2.staging.ehrocks.com:443'
-alias heroprod='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.ehrocks.com:443'
-alias heroint='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_INT herocli --server hero2.ehrocks.com:443'
+alias herostag='herocli --server hero2.staging.ehrocks.com:443'
+alias heroprod='herocli --server hero2.ehrocks.com:443'
+alias heroint='herocli --server hero2.integration.ehrocks.com:443'
 # Use alias for Hero Cli Eu
 # ----------------------
 alias heroprod_eu='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.eu.ehrocks.com:443'
@@ -78,6 +78,10 @@ alias bep='bundle exec puma -p'
 alias begrpc='bundle exec eh_protobuf start -c'
 alias bipg='bundle install --path .gems'
 alias bi='bundle install'
+# ----------------------
+# Alias for GO
+# ----------------------
+alias gr='go run'
 # ----------------------
 # Alias for postgres
 # ----------------------
