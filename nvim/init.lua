@@ -458,7 +458,8 @@ require('custom.any-jump')
 require('custom.symbols-outline')
 
 -- [[ Configure Alpha ]]
-require('custom.dashboard-nvim')
+-- require('custom.dashboard-nvim')
+require('custom.startup')
 
 -- [[ Configure Nvim Move ]]
 require('custom.move-nvim')

@@ -146,6 +146,10 @@ return {
     event = 'VimEnter',
     dependencies = { {'nvim-tree/nvim-web-devicons' } }
   },
+  {
+    "startup-nvim/startup.nvim",
+    requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+  },
 
   -- Color display instead of codes
   { 'norcalli/nvim-colorizer.lua' },

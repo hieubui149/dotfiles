@@ -13,6 +13,7 @@ require('telescope').setup {
     },
   },
   pickers = {
+    live_grep = {},
     grep_string = {
       theme = "ivy",
     },
@@ -22,6 +23,9 @@ require('telescope').setup {
     colorscheme = {
       theme = "dropdown"
     },
+    find_files = {
+      hidden = true,
+    },
   },
 }
 
@@ -29,7 +33,7 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>q', require('telescope.builtin').quickfix, { desc = '[Q]uickfix' })
+-- vim.keymap.set('n', '<c-q>', require('telescope.builtin').quickfix, { desc = '[Q]uickfix' })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()

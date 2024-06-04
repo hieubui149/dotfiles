@@ -38,9 +38,30 @@ end)
 -- ufo uses the same query files for folding (queries/<lang>/folds.scm)
 -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
 require('ufo').setup({
+    enable_get_fold_virt_text = false,
+    open_fold_hl_timeout = 150,
+    close_fold_kinds_for_ft = {
+        default = {'imports', 'comment'},
+        json = {'array'},
+        c = {'comment', 'region'}
+    },
+    preview = {
+        win_config = {
+            border = {'', '─', '', '', '', '─', '', ''},
+            winhighlight = 'Normal:Folded',
+            winblend = 0
+        },
+        mappings = {
+            scrollU = '<C-u>',
+            scrollD = '<C-d>',
+            jumpTop = '[',
+            jumpBot = ']'
+        }
+    },
     provider_selector = function(bufnr, filetype, buftype)
-        return {'treesitter', 'indent'}
-    end
+        return { 'treesitter', 'indent' }
+        -- refer to ./doc/example.lua for detail
+    end,
 })
 -- --
 

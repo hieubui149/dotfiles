@@ -12,6 +12,11 @@ alias g2dotfiles='cd ~/$WORK_DIR/mine/dotfiles && vim'
 alias g2nvim='cd ~/.config/nvim && vim'
 alias g2nvimswap='cd ~/.local/state/nvim/swap'
 # ----------------------
+# Alias for CLI tools
+# ----------------------
+# EZA as cd
+alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
+# ----------------------
 # Git Aliases
 # ----------------------
 alias ga='git add'
@@ -25,7 +30,8 @@ alias gcm='git commit --message'
 alias gcf='git commit --fixup'
 alias gco='git checkout'
 alias gcob='git checkout -b'
-alias gcom='git checkout master'
+alias gcom='git checkout master && git pull'
+alias gcomi='git checkout master && git pull'
 alias gcos='git checkout staging'
 alias gcod='git checkout development'
 alias gd='git diff'
