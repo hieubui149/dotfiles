@@ -479,6 +479,9 @@ require('custom.nvim-ufo')
 -- [[ Configure Flash nvim ]]
 -- require('custom.flash-nvim')
 
+-- [[ Configure Precognition ]]
+require('custom.precognition')
+
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')
 

@@ -189,4 +189,7 @@ return {
     end,
     event = "VeryLazy",
   },
+
+  -- Precognition uses virtual text and gutter signs to show available motions.
+  { "tris203/precognition.nvim" },
 }

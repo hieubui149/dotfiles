@@ -1,5 +1,5 @@
 -- local custom_themes = require'lualine.themes.everforest'
-local custom_themes = require'lualine.themes.tokyonight'
+-- local custom_themes = require'lualine.themes.tokyonight'
 
 -- local colors = {
 --   nord1  = '#3B4252',
@@ -17,7 +17,7 @@ require('lualine').setup({
   options = {
     icons_enabled = true,
     -- theme = custom_themes,
-    theme = 'nord',
+    theme = 'tokyonight',
     -- component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
