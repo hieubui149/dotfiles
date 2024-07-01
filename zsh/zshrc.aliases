@@ -2,9 +2,12 @@
 alias herostag='herocli --server hero2.staging.ehrocks.com:443'
 alias heroprod='herocli --server hero2.ehrocks.com:443'
 alias heroint='herocli --server hero2.integration.ehrocks.com:443'
-# Use alias for Hero Cli Eu
-# ----------------------
 alias heroprod_eu='HERO_ACCESS_TOKEN=$HERO_ACCESS_TOKEN_PROD herocli --server hero2.eu.ehrocks.com:443'
+
+alias heroc-req='heroprod console request'
+alias heroc-list='heroprod console list-request'
+alias heroc-appr='heroprod console approve --i'
+alias heroc-rej='heroprod console reject --i'
 # ----------------------
 # Alias for quick access dotfiles
 # ----------------------
