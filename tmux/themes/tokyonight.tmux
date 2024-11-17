@@ -39,8 +39,8 @@ setw -g window-status-separator ""
 setw -g window-status-style "none,fg=#15d69e,bg=colour236"
 
 # [COLORIZE]
-set -g window-status-format "#[fg=#4c5569]#[fg=white,bg=#4c5569]#I #[fg=white,bg=#2f334d]   #[fg=white,bg=#2f334d]#W #[fg=#4c5569] "
-set -g window-status-current-format "#[fg=#82aaff]#[fg=#2f334d,bg=#82aaff]#I #[fg=#82aaff,bg=#3b4261]   #W #F #[fg=#82aaff,bg=#2f334d] "
+set -g window-status-format "#[fg=#4c5569,bg=#2f334d]#[fg=white,bg=#4c5569]#I #[fg=white,bg=#2f334d]   #[fg=white,bg=#2f334d]#W #[fg=#4c5569] "
+set -g window-status-current-format "#[fg=#82aaff,bg=#2f334d]#[fg=#2f334d,bg=#82aaff]#I #[fg=#82aaff,bg=#3b4261]   #W #F #[fg=#82aaff,bg=#2f334d] "
 # [END]----------- THEME CONFIGURATION ------------------
 
 # local ret = {

@@ -8,8 +8,9 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
 fi
 
 search=$({ \
-  echo "bundle exec irb"; \
   echo "DISABLE_SPRING=true bundle exec rails c"; \
+  echo "bundle exec rails c"; \
+  echo "bundle exec irb"; \
   echo "other command"; \
 } | fzf-tmux -p -w 100% -h 50% -y S)
 

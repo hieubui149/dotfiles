@@ -35,8 +35,8 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {'filename'},
-    lualine_b = {''},
-    lualine_c = {''},
+    lualine_b = { require("recorder").displaySlots },
+    lualine_c = { require("recorder").recordingStatus },
     lualine_x = {'branch', 'diff'},
     lualine_y = {'filetype'},
     lualine_z = {'location'}

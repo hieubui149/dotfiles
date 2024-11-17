@@ -24,7 +24,7 @@ require('telescope').setup {
       theme = "dropdown"
     },
     find_files = {
-      hidden = true,
+      hidden = false,
     },
   },
 }

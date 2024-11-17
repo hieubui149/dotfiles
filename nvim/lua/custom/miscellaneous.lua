@@ -71,8 +71,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>jl', '<c-w><c-l>', { desc = '[J]ump to Righ
 
 -- Copy file name / relative path / full path
 vim.keymap.set('n', '<Space>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy [R]elative path' })
-vim.keymap.set('n', '<Space>cf', ':let @+ = expand("%:p")<CR>', { desc = '[C]opy [F]ull path' })
-vim.keymap.set('n', '<Space>cn', ':let @+ = expand("%:t")<CR>', { desc = '[C]opy File [N]ame' })
+vim.keymap.set('n', '<Space>cf', ':let @+=expand("%:p")<CR>', { desc = '[C]opy [F]ull path' })
+vim.keymap.set('n', '<Space>cn', ':let @+=expand("%:t")<CR>', { desc = '[C]opy File [N]ame' })
 
 -- Configure custom development keys
 vim.keymap.set('v', '<c-c>', '"*y', { desc = 'Copy to clipboard registry' })
@@ -103,3 +103,7 @@ vim.keymap.set('n', '<c-l><c-o>', ':set nonumber<CR>', { desc = 'Hide [L]ine Num
 -- Vim config easy access
 vim.keymap.set('n', '<c-v><c-o>', ':vnew ~/.config/nvim/init.lua<CR>', { desc = 'Open n[V]im config in vertical pane' })
 vim.keymap.set('n', '<c-v><c-i>', ':source ~/.config/nvim/init.lua<CR>', { desc = 'Reload n[V]im config in vertical pane' })
+
+
+
+vim.keymap.set('n', '<leader>CFJ', ':%!jq .<CR>', { desc = '[F]ormat [J]SON' })

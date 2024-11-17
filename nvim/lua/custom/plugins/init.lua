@@ -184,9 +184,11 @@ return {
       { "github/copilot.vim" },
       { "nvim-lua/plenary.nvim" },
     },
-    build = function()
-      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
-    end,
+    build = "make tiktoken",
+    opts = {
+      debug = true, -- Enable debugging
+      -- See Configuration section for rest
+    },
     event = "VeryLazy",
   },
 
@@ -195,4 +197,24 @@ return {
 
   -- Toggle terminal
   { 'akinsho/toggleterm.nvim' },
+
+  -- Enhance vim macros
+  {
+    "chrisgrieser/nvim-recorder",
+    dependencies = "rcarriga/nvim-notify", -- optional
+    opts = {}, -- required even with default settings, since it calls `setup()`
+  },
+
+  -- color the border of active window
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinLeave" },
+    opts = {
+      hi = {
+        -- bg = "#16161E",
+        fg = "#82aaff",
+      }
+    }
+  },
 }

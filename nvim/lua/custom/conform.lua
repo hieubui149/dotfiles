@@ -4,19 +4,21 @@ require("conform").setup({
     -- Conform will run multiple formatters sequentially
     python = { "isort", "black" },
     -- Use a sub-list to run only the first available formatter
-    javascript = { { "prettier" } },
-    javascriptreact = { { "prettier" } },
-    typescript = { { "prettier" } },
-    typescriptreact = { { "prettier" } },
-    css = { { "prettier" } },
-    vue = { { "prettier" } },
-    scss = { { "prettier" } },
-    html = { { "prettier" } },
+    javascript = { "prettier" },
+    javascriptreact = { "prettier" } ,
+    typescript = { "prettier" },
+    typescriptreact = { "prettier" },
+    css = { "prettier" },
+    vue = { "prettier" },
+    scss = { "prettier" },
+    html = { "prettier" },
 
-    markdown = { { "prettier" } },
+    markdown = { "prettier" },
 
-    json = { { "prettier" } },
-    jsonc = { { "prettier" } },
+    json = { "fixjson" },
+    jsonc = { "jsonnetfmt" },
+
+    ruby  = { "rubyfmt" },
   },
 })
 vim.keymap.set('n', '<leader>Cf', require'conform'.format, { desc='[C]onform [F]ormat' })

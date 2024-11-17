@@ -69,6 +69,12 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup({})
+    end,
+  },
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -331,7 +337,7 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  tsserver = {},
+  ts_ls = {},
   solargraph = {
     autoformat = false,
     diagnostics = true,
@@ -484,6 +490,9 @@ require('custom.toggleterm')
 
 -- [[ Configure Precognition ]]
 require('custom.precognition')
+
+-- [[ Configure NeoComposer ]]
+require('custom.neocomposer')
 
 -- [[ Configure Miscellaneous ]]
 require('custom.miscellaneous')
