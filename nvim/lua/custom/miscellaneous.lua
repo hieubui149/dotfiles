@@ -7,27 +7,6 @@ require("nvim-surround").setup()
 -- [[ Configure vim-move ]]
 vim.g.move_key_modifier = 'C'
 
---
-vim.opt.relativenumber = true
-vim.opt.colorcolumn = '120'
-vim.opt.encoding = 'utf8'
-vim.opt.confirm = true
-vim.opt.cursorline = true
-vim.opt.foldmethod = 'indent'
-vim.opt.foldlevelstart = 20
--- vim.opt.fillchars = { eob = ' ' ,fold = ' ' ,vert = '⏽' }
-vim.opt.fillchars = { eob = ' ' ,fold = ' ' }
-vim.opt.autoindent = true
-vim.opt.breakindent = true
-vim.opt.smartindent = true
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
-vim.g.nopaste = true
-vim.g.linespace = 1
-vim.g.nopaste = true
-vim.g.ruler = true
-
 -- vim.api.nvim_command('syntax on')
 -- vim.api.nvim_command('filetype on')
 -- vim.api.nvim_command('filetype plugin on')
