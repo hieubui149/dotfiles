@@ -116,9 +116,8 @@ require("lazy").setup({
 	--     return vim.fn.executable 'make' == 1
 	--   end,
 	-- },
-	--
-	-- LSP Plugins
 
+	-- LSP Plugins
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
@@ -140,6 +139,9 @@ require("lazy").setup({
 			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+
+			-- for Saghen/blink.cmp autocomplete
+			"saghen/blink.cmp",
 
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -194,7 +196,8 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Autocompletion
+	-- Autocompletion
+	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
@@ -230,6 +233,35 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 		},
+	},
+	{
+		"saghen/blink.cmp",
+		lazy = false, -- lazy loading handled internally
+		-- optional: provides snippets for the snippet source
+		dependencies = "rafamadriz/friendly-snippets",
+		-- use a release tag to download pre-built binaries
+		version = "v0.*",
+
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- 'default' for mappings similar to built-in completion
+			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+			-- see the "default configuration" section below for full documentation on how to define
+			-- your own keymap.
+			keymap = { preset = "default" },
+
+			highlight = {
+				use_nvim_cmp_as_default = false,
+			},
+			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "normal",
+		},
+		-- allows extending the enabled_providers array elsewhere in your config
+		-- without having to redefining it
+		opts_extend = { "sources.completion.enabled_providers" },
 	},
 
 	{ -- Highlight, edit, and navigate code
