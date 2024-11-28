@@ -259,4 +259,51 @@ return {
 			},
 		},
 	},
+
+	-- scrollbar
+	{
+		"petertriho/nvim-scrollbar",
+		config = function()
+			local colors = require("tokyonight.colors").setup()
+			require("scrollbar").setup({
+				handle = {
+					color = colors.bg_highlight,
+				},
+				marks = {
+					Cursor = { text = "◀", color = colors.info },
+					Search = { text = { "-", "=" }, color = colors.orange },
+					Error = { color = colors.error },
+					Warn = { color = colors.warning },
+					Info = { color = colors.info },
+					Hint = { color = colors.hint },
+					Misc = { color = colors.purple },
+				}
+			})
+		end,
+	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		config = function()
+			-- require('hlslens').setup() is not required
+			require("scrollbar.handlers.search").setup({
+					-- hlslens config overrides
+			})
+		end,
+	},
+
+  {
+		'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function() vim.g.barbar_auto_setup = false end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
 }
