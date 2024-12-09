@@ -10,15 +10,15 @@
 # APP QUICK ACCESS
 ##############################
 # open app with shortcuts
-ctrl + cmd + shift - i : open -a 'iTerm Rosetta'
-ctrl + cmd + shift - s : open -a Slack
-ctrl + cmd + shift - p : open -a Spotify
-ctrl + cmd + shift - e : open -a 'Microsoft Edge'
-ctrl + cmd + shift - t : open -a Telegram
-ctrl + cmd + shift - m : open -a Mail
-ctrl + cmd + shift - o : open -a Obsidian
-ctrl + cmd + shift - c : open -a Calendar
-ctrl + cmd + shift - z : open -a Zalo
+cmd + shift - i : open -a 'iTerm Rosetta'
+cmd + shift - s : open -a Slack
+# cmd + shift - p : open -a Spotify
+cmd + shift - e : open -a 'Microsoft Edge'
+# cmd + shift - t : open -a Telegram
+cmd + shift - m : open -a Mail
+cmd + shift - o : open -a Obsidian
+cmd + shift - c : open -a Calendar
+cmd + shift - z : open -a Zalo
 
 ##############################
 # YABAI NORMAL CONFIGURATION
