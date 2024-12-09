@@ -31,16 +31,16 @@ setw -g pane-border-format " ###P "
 setw -g pane-border-lines "simple"
 # ---- Bars -------
 # [COLORIZE]
-set -g status-left "#[fg=#2f334d,bg=#82aaff]   #S #[fg=#82aaff,bg=#2f334d]"
-set -g status-right "#[fg=#82aaff,bg=#2f334d] %Y-%m-%d  #[fg=#82aaff,bg=2f334d]▕#[fg=#82aaff,bg=#2f334d]#[fg=#82aaff,bg=#2f334d] %H:%M 祥"
+set -g status-left "#[fg=#82aaff,bg=#2f334d]#[fg=#2f334d,bg=#82aaff]  #[fg=white,bg=#4c5569] #S #[fg=#4c5569,bg=#2f334d]"
+set -g status-right "#[fg=#fca7ea,bg=#2f334d]#[fg=#2f334d,bg=#fca7ea]# #[fg=white,bg=#4c5569] %Y-%m-%d #[fg=#4c5569,bg=#2f334d] #[fg=#ff966c,bg=#2f334d]#[fg=#2f334d,bg=#ff966c]祥 #[fg=white,bg=#4c5569] %H:%M #[fg=#4c5569,bg=#2f334d]"
 # ---- Windows ----
 setw -g window-status-activity-style "none"
 setw -g window-status-separator ""
 setw -g window-status-style "none,fg=#15d69e,bg=colour236"
 
 # [COLORIZE]
-set -g window-status-format "#[fg=#4c5569,bg=#2f334d]#[fg=white,bg=#4c5569]#I #[fg=white,bg=#2f334d]   #[fg=white,bg=#2f334d]#W #[fg=#4c5569] "
-set -g window-status-current-format "#[fg=#82aaff,bg=#2f334d]#[fg=#2f334d,bg=#82aaff]#I #[fg=#82aaff,bg=#3b4261]   #W #F #[fg=#82aaff,bg=#2f334d] "
+set -g window-status-format "#[fg=#b4f9f8,bg=#2f334d]#[fg=#2f334d,bg=#b4f9f8] #I #[fg=white,bg=#4c5569] #W #[fg=#4c5569,bg=#2f334d] "
+set -g window-status-current-format "#[fg=#4fd6be,bg=#2f334d]#[fg=#2f334d,bg=#4fd6be] #I #[fg=white,bg=#4c5569] #W #[fg=#4c5569,bg=#2f334d] "
 # [END]----------- THEME CONFIGURATION ------------------
 
 # local ret = {
