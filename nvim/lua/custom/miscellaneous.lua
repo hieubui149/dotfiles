@@ -61,7 +61,6 @@ vim.keymap.set('n', '<c-a>', 'ggVG', { desc = '[V]isual all textes of the curren
 vim.keymap.set('n', '<S-j>n', 'i<CR><ESC>', { desc = 'Break cursor to a new line' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Keeping centered' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Keeping centered' })
-vim.keymap.set('n', '<S-j>', 'mzJ`z', { desc = 'Keeping centered' })
 vim.keymap.set('n', '<leader>\\', '<c-^>', { desc = 'Switch between the last two buffers' })
 vim.keymap.set('n', '<leader>zi', "<c-w>|", { desc = '[Z]oom In' })
 vim.keymap.set('n', '<leader>zo', "<c-w>=", { desc = '[Z]oom [O]ut' })

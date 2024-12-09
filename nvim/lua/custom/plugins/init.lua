@@ -98,9 +98,6 @@ return {
 	-- Github Copilot
 	{ "github/copilot.vim" },
 
-	-- Renamer
-	-- { 'filipdutescu/renamer.nvim', branch = 'master', requires = { {'nvim-lua/plenary.nvim'} } },
-
 	-- Nvim movement in one go
 	{
 		"booperlv/nvim-gomove",
@@ -112,14 +109,6 @@ return {
 		},
 	},
 
-	-- Coc nvim
-	-- { 'neoclide/coc.nvim', branch = 'release' },
-
-	-- Winshift
-	-- { 'sindrets/winshift.nvim', opts = {
-	--     highlight_moving_win = true,  -- Highlight the window being moved
-	--   }
-	-- },
 	{
 		"tversteeg/registers.nvim",
 		name = "registers",
@@ -138,9 +127,6 @@ return {
 	{ "RutaTang/quicknote.nvim", config = {
 		mode = "resident",
 	}, dependencies = { "nvim-lua/plenary.nvim" } },
-
-	-- Harpoon for marks
-	-- { 'ThePrimeagen/harpoon', opts = {}, dependencies = { "nvim-lua/plenary.nvim" } },
 
 	-- Noice for cmdline replacement with noitify
 	{
@@ -211,27 +197,52 @@ return {
 	{ "fatih/vim-go" },
 
 	{ "stevearc/conform.nvim" },
-	-- {
-	--   "sourcegraph/sg.nvim",
-	--   dependencies = { "nvim-lua/plenary.nvim" },
-	--
-	--   -- If you have a recent version of lazy.nvim, you don't need to add this!
-	--   build = "nvim -l build/init.lua",
-	-- },
-	--
 	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
-		dependencies = {
-			{ "github/copilot.vim" },
-			{ "nvim-lua/plenary.nvim" },
-		},
-		build = "make tiktoken",
-		opts = {
-			debug = true, -- Enable debugging
-			-- See Configuration section for rest
-		},
+		"yetone/avante.nvim",
 		event = "VeryLazy",
+		lazy = false,
+		version = false, -- set this if you want to always pull the latest change
+		opts = {
+			provider = "copilot",
+			auto_suggestions_provider = "copilot"
+		},
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		build = "make",
+		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- The below dependencies are optional,
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				'MeanderingProgrammer/render-markdown.nvim',
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
 	},
 
 	-- Precognition uses virtual text and gutter signs to show available motions.
@@ -306,4 +317,34 @@ return {
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
+
+	-- For terminal integration
+	{
+		"folke/snacks.nvim",
+		opts = {
+			terminal = {},
+			styles = {
+				notification = {
+					wo = { wrap = true } -- Wrap notifications
+				}
+			},
+		},
+		keys = {
+			{ "<leader>St", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+			-- { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore" },
+		},
+	},
+
+	-- Funny
+	{
+    'tamton-aquib/duck.nvim',
+    config = function()
+			vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
+			vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {})
+			vim.keymap.set('n', '<leader>dd', function() require("duck").hatch("🦆", 10) end, {}) -- A pretty fast duck
+			vim.keymap.set('n', '<leader>dc', function() require("duck").hatch("🐈", 0.75) end, {}) -- Quite a mellow cat
+			vim.keymap.set('n', '<leader>db', function() require("duck").hatch("🦋", 10) end, {}) -- Quite a mellow cat
+			vim.keymap.set('n', '<leader>df', function() require("duck").hatch("🦀", 10) end, {}) -- Quite a mellow cat
+    end
+	},
 }

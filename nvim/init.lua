@@ -361,9 +361,6 @@ require("custom.nvim-treesitter")
 -- [[ Configure theme configuration ]]
 require("custom.theme")
 
--- [[ Configure lsp saga ]]
-require("custom.lspsaga")
-
 -- [[ Configure Nvim Tree ]]
 require("custom.nvim-tree")
 
@@ -372,6 +369,9 @@ require("custom.lualine")
 
 -- [[ Configure Github Copilot ]]
 require("custom.github-copilot")
+
+-- [[ Configure Avante AI ]]
+require("custom.avante")
 
 -- [[ Configure nvim-gomove ]]
 require("custom.nvim-gomove")
@@ -391,11 +391,11 @@ require("custom.harpoon")
 -- [[ Configure noice ]]
 require("custom.noice")
 
+-- [[ Configure marks ]]
 require("custom.marks")
+
 -- [[ Configure wilder ]]
 require("custom.wilder")
-
--- [[ Configure marks ]]
 
 -- [[ Configure Search Replace ]]
 require("custom.search-replace")
@@ -422,14 +422,8 @@ require("custom.hlchunk")
 -- [[ Configure conform ]]
 require("custom.conform")
 
--- [[ Configure nvim ufo ]]
-require("custom.nvim-ufo")
-
 -- [[ Configure Cody ]]
 -- require('custom.cody')
-
--- [[ Configure Flash nvim ]]
--- require('custom.flash-nvim')
 
 -- [[ Configure ToggleTerm ]]
 require("custom.toggleterm")
