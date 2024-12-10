@@ -347,4 +347,13 @@ return {
 			vim.keymap.set('n', '<leader>df', function() require("duck").hatch("🦀", 10) end, {}) -- Quite a mellow cat
     end
 	},
+
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			"suketa/nvim-dap-ruby",
+			"rcarriga/nvim-dap-ui",
+			"nvim-neotest/nvim-nio",
+		},
+	},
 }

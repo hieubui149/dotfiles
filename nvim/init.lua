@@ -127,6 +127,7 @@ require("lazy").setup({
 			library = {
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+        { plugins = { "nvim-dap-ui" }, types = true },
 			},
 		},
 	},
@@ -360,6 +361,9 @@ require("custom.nvim-treesitter")
 
 -- [[ Configure theme configuration ]]
 require("custom.theme")
+
+-- [[ Configure DAP for NVIM debugging ]]
+require("custom.dap")
 
 -- [[ Configure Nvim Tree ]]
 require("custom.nvim-tree")
