@@ -40,6 +40,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 		end
 
+		map("K", vim.lsp.buf.hover, "LSP Hover")
+
 		-- Jump to the definition of the word under your cursor.
 		--  This is where a variable was first declared, or where a function is defined, etc.
 		--  To jump back, press <C-t>.
@@ -175,6 +177,9 @@ local servers = {
 		diagnostics = true,
 		completion = true,
 	},
+	-- ruby_lsp = {
+	-- 	init_options = {}
+	-- },
 
 	gopls = {
 		analyses = {
@@ -217,6 +222,8 @@ vim.list_extend(ensure_installed, {
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 require("mason-lspconfig").setup({
+	automatic_installation = true,
+	ensure_installed = servers,
 	handlers = {
 		function(server_name)
 			local server = servers[server_name] or {}

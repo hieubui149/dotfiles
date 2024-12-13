@@ -168,15 +168,15 @@ return {
 	{ "pechorin/any-jump.vim" },
 
 	-- Dashboard
-	{
-		"glepnir/dashboard-nvim",
-		event = "VimEnter",
-		dependencies = { { "nvim-tree/nvim-web-devicons" } },
-	},
-	{
-		"startup-nvim/startup.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-	},
+	-- {
+	-- 	"glepnir/dashboard-nvim",
+	-- 	event = "VimEnter",
+	-- 	dependencies = { { "nvim-tree/nvim-web-devicons" } },
+	-- },
+	-- {
+	-- 	"startup-nvim/startup.nvim",
+	-- 	requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	-- },
 
 	-- Color display instead of codes
 	{ "norcalli/nvim-colorizer.lua" },
@@ -319,21 +319,7 @@ return {
   },
 
 	-- For terminal integration
-	{
-		"folke/snacks.nvim",
-		opts = {
-			terminal = {},
-			styles = {
-				notification = {
-					wo = { wrap = true } -- Wrap notifications
-				}
-			},
-		},
-		keys = {
-			{ "<leader>St", function() Snacks.terminal() end, desc = "Toggle Terminal" },
-			-- { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore" },
-		},
-	},
+	{ "folke/snacks.nvim", },
 
 	-- Funny
 	{

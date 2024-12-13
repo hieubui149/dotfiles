@@ -738,6 +738,26 @@
                     "simple_modifications": [
                         {
                             "from": {
+                                "key_code": "caps_lock"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "escape"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "escape"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "caps_lock"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
                                 "key_code": "left_command"
                             },
                             "to": [
@@ -758,21 +778,11 @@
                         },
                         {
                             "from": {
-                                "key_code": "escape"
+                                "key_code": "right_option"
                             },
                             "to": [
                                 {
-                                    "key_code": "caps_lock"
-                                }
-                            ]
-                        },
-                        {
-                            "from": {
-                                "key_code": "caps_lock"
-                            },
-                            "to": [
-                                {
-                                    "key_code": "escape"
+                                    "key_code": "right_command"
                                 }
                             ]
                         }

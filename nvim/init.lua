@@ -413,9 +413,8 @@ require("custom.any-jump")
 -- [[ Configure symbols outline ]]
 require("custom.symbols-outline")
 
--- [[ Configure Alpha ]]
--- require('custom.dashboard-nvim')
-require("custom.startup")
+-- [[ Configure Snacks ]]
+require("custom.snacks")
 
 -- [[ Configure Nvim Move ]]
 require("custom.move-nvim")
