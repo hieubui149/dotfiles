@@ -77,3 +77,6 @@ require('nvim-tree').setup {
     -- end,
   }
 }
+
+-- set background to transparent
+vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE' })

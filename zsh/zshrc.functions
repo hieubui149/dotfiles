@@ -22,7 +22,7 @@ _fix_cursor() {
 precmd_functions+=(_fix_cursor)
 
 bindkey -e
-bindkey jj vi-cmd-mode
+# bindkey jj vi-cmd-mode
 
 if [ "$(sysctl -n sysctl.proc_translated)" = "1" ]; then
   local brew_path="/usr/local/homebrew/bin"

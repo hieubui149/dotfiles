@@ -10,7 +10,8 @@
 # APP QUICK ACCESS
 ##############################
 # open app with shortcuts
-cmd + shift - i : open -a 'iTerm Rosetta'
+# cmd + shift - i : open -a 'iTerm Rosetta'
+cmd + shift - i : open -a 'WezTerm'
 cmd + shift - s : open -a Slack
 # cmd + shift - p : open -a Spotify
 cmd + shift - e : open -a 'Microsoft Edge'

@@ -82,6 +82,7 @@ require('snacks').setup({
         icon = " ",
         title = "Git Status",
         section = "terminal",
+        cmd = "git status",
         enabled = function()
           return Snacks.git.get_root() ~= nil
         end,

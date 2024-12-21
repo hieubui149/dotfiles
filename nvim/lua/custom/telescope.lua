@@ -3,6 +3,7 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
+        ["<C-q>"] = require('telescope.actions').send_to_qflist,  -- Add to quickfix list
         ['<C-u>'] = false,
         ['<C-d>'] = false,
         ['<esc>'] = 'close'
@@ -13,7 +14,6 @@ require('telescope').setup {
     },
   },
   pickers = {
-    live_grep = {},
     grep_string = {
       theme = "ivy",
     },
@@ -38,7 +38,6 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
 
--- See `:help telescope.builtin`
 -- vim.keymap.set('n', '<c-q>', builtin.quickfix, { desc = '[Q]uickfix' })
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
@@ -52,6 +51,7 @@ vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Telescope [R]esume' 
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorScheme' })
 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>sq', builtin.quickfix, { desc = '[S]earch [Q]uickfix' })
 
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
