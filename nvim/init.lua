@@ -248,7 +248,22 @@ require("lazy").setup({
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-      keymap = { preset = 'default', },
+      keymap = {
+        preset = 'default',
+        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-y>'] = { 'accept' },
+
+        ['<Tab>'] = {},
+        ['<S-Tab>'] = {},
+
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = {},
+        ['<C-n>'] = {},
+
+        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+      },
 		},
 		-- allows extending the enabled_providers array elsewhere in your config
 		-- without having to redefining it
