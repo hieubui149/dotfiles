@@ -1,4 +1,6 @@
+# terminal
 alias startZelliji="bash <(curl -L zellij.dev/launch)"
+alias tmuxworks="cd ~/Works && tmux attach -t Works || tmux new -s Works"
 # Use alias for Hero Cli Au
 alias herostag='herocli --server hero2.staging.ehrocks.com:443'
 alias heroprod='herocli --server hero2.ehrocks.com:443'

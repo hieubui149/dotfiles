@@ -8,7 +8,7 @@ set -g message-style "fg=colour231,bg=colour240"
 
 set -g @dark_color "#2f334d"
 set -g @light_color "#82aaff"
-#
+
 set -g status-justify "left"
 set -g status-left-style "none"
 set -g status-right-style "none"
@@ -32,7 +32,7 @@ setw -g pane-border-lines "simple"
 # ---- Bars -------
 # [COLORIZE]
 set -g status-left "#[fg=#82aaff,bg=#2f334d]#[fg=#2f334d,bg=#82aaff]  #[fg=white,bg=#4c5569] #S #[fg=#4c5569,bg=#2f334d]"
-set -g status-right "#[fg=#fca7ea,bg=#2f334d]#[fg=#2f334d,bg=#fca7ea]# #[fg=white,bg=#4c5569] %Y-%m-%d #[fg=#4c5569,bg=#2f334d] #[fg=#ff966c,bg=#2f334d]#[fg=#2f334d,bg=#ff966c]祥 #[fg=white,bg=#4c5569] %H:%M #[fg=#4c5569,bg=#2f334d]"
+set -g status-right "#[fg=#fca7ea,bg=#2f334d]#[fg=#2f334d,bg=#fca7ea]  #[fg=white,bg=#4c5569] %Y-%m-%d #[fg=#4c5569,bg=#2f334d] #[fg=#ff966c,bg=#2f334d]#[fg=#2f334d,bg=#ff966c]祥 #[fg=white,bg=#4c5569] %H:%M #[fg=#4c5569,bg=#2f334d]"
 # ---- Windows ----
 setw -g window-status-activity-style "none"
 setw -g window-status-separator ""

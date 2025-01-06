@@ -25,3 +25,6 @@ eval "$(rbenv init - zsh)"
 export BAT_THEME='Nord'
 
 # Eza (better ls)
+
+# Zoxide
+eval "$(zoxide init --cmd cd zsh)"

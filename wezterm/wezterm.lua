@@ -19,7 +19,7 @@ config.color_scheme = 'Tokyo Night Storm (Gogh)'
 
 
 -- Image settings
-local background_folder = "/Users/hieubui/Pictures/backgrounds/wezterm-bgs"
+local background_folder = "/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg"
 local function pick_random_background(folder)
   local handle = io.popen('ls "' .. folder .. '"')
   local files = handle:read("*a")
@@ -50,7 +50,7 @@ config.keys = {
         wezterm.log_info("New bg:" .. new_background)
       else
         window:set_config_overrides({
-          window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg3.png',
+          window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png',
         })
         wezterm.log_error("Could not find bg image")
       end
@@ -60,7 +60,7 @@ config.keys = {
 
 config.window_background_opacity = 1
 config.macos_window_background_blur = 1
-config.window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg3.png'
+config.window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png'
 config.window_background_image_hsb = {
   brightness = 1,
   hue = 1,

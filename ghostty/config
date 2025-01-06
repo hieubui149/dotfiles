@@ -1,0 +1,9 @@
+theme = tokyonight-storm
+
+font-family = "SFMono Nerd Font"
+font-size = 16
+
+cursor-style = underline
+
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
