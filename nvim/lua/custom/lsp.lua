@@ -160,27 +160,53 @@ vim.api.nvim_create_autocmd("LspAttach", {
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 local servers = {
-	-- clangd = {},
-	-- gopls = {},
-	-- pyright = {},
-	-- rust_analyzer = {},
-	-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-	--
-	-- Some languages (like typescript) have entire language plugins that can be useful:
-	--    https://github.com/pmizio/typescript-tools.nvim
-	--
-	-- But for many setups, the LSP (`ts_ls`) will work just fine
 	ts_ls = {},
-
-	solargraph = {
-		autoformat = false,
-		diagnostics = true,
-		completion = true,
+	-- solargraph = {},
+	ruby_lsp = {
+    cmd = { "bundle", "exec", "ruby-lsp" },
+    root_dir = require("lspconfig.util").root_pattern("Gemfile", ".git", ".ruby-version"),
+    on_new_config = function(new_config, _)
+			-- Set the custom Gemfile path for Bundler
+			new_config.cmd_env = new_config.cmd_env or {}
+			new_config.cmd_env.BUNDLE_GEMFILE = "/Users/hieubui/Works/ruby-lsp/Gemfile"
+    end,
+		init_options = {
+			formatter = "none",
+			experimentalFeaturesEnabled = false,
+		},
+    settings = {
+			rubyLsp = {
+				enable = true,
+				enabledFeatures = {
+					"codeActions",
+					"codeLens",
+					"completion",
+					"definition",
+					"diagnostics",
+					"documentHighlights",
+					"documentLink",
+					"documentSymbols",
+					"foldingRanges",
+					"formatting",
+					"hover",
+					"inlayHint",
+					"onTypeFormatting",
+					"selectionRanges",
+					"semanticHighlighting",
+					"signatureHelp",
+					"typeHierarchy",
+					"workspaceSymbol"
+				},
+				indexing = {
+					exclude = {
+						"**/node_modules/**",
+						"**/vendor/**",
+						"**/.git/**",
+					},
+				},
+			},
+    },
 	},
-	-- ruby_lsp = {
-	-- 	init_options = {}
-	-- },
-
 	gopls = {
 		analyses = {
 			unusedparams = true,
@@ -188,11 +214,7 @@ local servers = {
 		},
 		staticcheck = true,
 	},
-
 	lua_ls = {
-		-- cmd = {...},
-		-- filetypes = { ...},
-		-- capabilities = {},
 		settings = {
 			Lua = {
 				completion = {
@@ -211,7 +233,7 @@ local servers = {
 --    :Mason
 --
 --  You can press `g?` for help in this menu.
-require("mason").setup()
+-- require("mason").setup()
 
 -- You can add other tools here that you want Mason to install
 -- for you, so that they are available from within Neovim.
@@ -240,3 +262,5 @@ require("mason-lspconfig").setup({
 		end,
 	},
 })
+
+vim.lsp.set_log_level("debug")
