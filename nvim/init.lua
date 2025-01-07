@@ -127,7 +127,7 @@ require("lazy").setup({
 			library = {
 				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-        { plugins = { "nvim-dap-ui" }, types = true },
+				{ plugins = { "nvim-dap-ui" }, types = true },
 			},
 		},
 	},
@@ -188,13 +188,27 @@ require("lazy").setup({
 			-- 	}
 			-- end,
 			formatters_by_ft = {
-				lua = { "stylua" },
+				lua = {
+					"stylua",
+				},
 				-- Conform can also run multiple formatters sequentially
 				python = { "isort", "black" },
 
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				ruby = { "rubyfmt", lsp_format = "never" },
+			},
+			formatters = {
+				stylua = {
+					command = "stylelua",
+					args = {
+						"--indent-size",
+						"2", -- 2 spaces for indentation
+						"--tab-width",
+						"2", -- Set tab width to 2 spaces (optional)
+						"--no-tabs", -- Use spaces, not tabs (optional)
+					},
+				},
 			},
 		},
 	},
@@ -248,22 +262,22 @@ require("lazy").setup({
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
-      keymap = {
-        preset = 'default',
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-y>'] = { 'accept' },
+			keymap = {
+				preset = "default",
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-y>"] = { "accept" },
 
-        ['<Tab>'] = {},
-        ['<S-Tab>'] = {},
+				["<Tab>"] = {},
+				["<S-Tab>"] = {},
 
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-p>'] = {},
-        ['<C-n>'] = {},
+				["<Up>"] = { "select_prev", "fallback" },
+				["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = {},
+				["<C-n>"] = {},
 
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-      },
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+			},
 		},
 		-- allows extending the enabled_providers array elsewhere in your config
 		-- without having to redefining it
@@ -277,7 +291,7 @@ require("lazy").setup({
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 		opts = {
 			ensure_installed = {
-        "ruby",
+				"ruby",
 				"bash",
 				"c",
 				"diff",

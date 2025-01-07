@@ -163,18 +163,18 @@ local servers = {
 	ts_ls = {},
 	-- solargraph = {},
 	ruby_lsp = {
-    cmd = { "bundle", "exec", "ruby-lsp" },
-    root_dir = require("lspconfig.util").root_pattern("Gemfile", ".git", ".ruby-version"),
-    on_new_config = function(new_config, _)
+		cmd = { "bundle", "exec", "ruby-lsp" },
+		root_dir = require("lspconfig.util").root_pattern("Gemfile", ".git", ".ruby-version"),
+		on_new_config = function(new_config, _)
 			-- Set the custom Gemfile path for Bundler
 			new_config.cmd_env = new_config.cmd_env or {}
 			new_config.cmd_env.BUNDLE_GEMFILE = "/Users/hieubui/Works/ruby-lsp/Gemfile"
-    end,
+		end,
 		init_options = {
 			formatter = "none",
 			experimentalFeaturesEnabled = false,
 		},
-    settings = {
+		settings = {
 			rubyLsp = {
 				enable = true,
 				enabledFeatures = {
@@ -195,7 +195,7 @@ local servers = {
 					"semanticHighlighting",
 					"signatureHelp",
 					"typeHierarchy",
-					"workspaceSymbol"
+					"workspaceSymbol",
 				},
 				indexing = {
 					exclude = {
@@ -205,7 +205,7 @@ local servers = {
 					},
 				},
 			},
-    },
+		},
 	},
 	gopls = {
 		analyses = {
@@ -263,4 +263,4 @@ require("mason-lspconfig").setup({
 	},
 })
 
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
