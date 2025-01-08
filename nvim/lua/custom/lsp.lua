@@ -168,7 +168,7 @@ local servers = {
 		on_new_config = function(new_config, _)
 			-- Set the custom Gemfile path for Bundler
 			new_config.cmd_env = new_config.cmd_env or {}
-			new_config.cmd_env.BUNDLE_GEMFILE = "/Users/hieubui/Works/ruby-lsp/Gemfile"
+			new_config.cmd_env.BUNDLE_GEMFILE = "/Users/hieubui/.config/nvim/lsp/ruby-lsp/Gemfile"
 		end,
 		init_options = {
 			formatter = "none",
