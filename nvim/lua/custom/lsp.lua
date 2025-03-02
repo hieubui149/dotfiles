@@ -161,7 +161,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 local servers = {
 	ts_ls = {},
-	-- solargraph = {},
+	solargraph = {},
 	ruby_lsp = {
 		cmd = { "bundle", "exec", "ruby-lsp" },
 		root_dir = require("lspconfig.util").root_pattern("Gemfile", ".git", ".ruby-version"),

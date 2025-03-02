@@ -17,6 +17,16 @@ _fzf_comprun() {
   esac
 }
 
+# FNM (NVM replacement)
+export PATH="/Users/hieubui/.local/state/fnm_multishells/87458_1740903186137/bin":$PATH
+export FNM_MULTISHELL_PATH="/Users/hieubui/.local/state/fnm_multishells/87458_1740903186137"
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_DIR="/Users/hieubui/.local/share/fnm"
+export FNM_LOGLEVEL="info"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_COREPACK_ENABLED="false"
+export FNM_RESOLVE_ENGINES="true"
+export FNM_ARCH="x64"
 
 # RBENV
 eval "$(rbenv init - zsh)"

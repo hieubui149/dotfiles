@@ -367,6 +367,9 @@ require("lazy").setup({
 -- [[ Configure Telescope ]]
 require("custom.telescope")
 
+-- [[ Configure NeoScroll ]]
+require("custom.neoscroll")
+
 -- [[ Configure LSP ]]
 require("custom.lsp")
 

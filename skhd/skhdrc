@@ -11,7 +11,7 @@
 ##############################
 # open app with shortcuts
 # cmd + shift - i : open -a 'iTerm Rosetta'
-cmd + shift - i : open -a 'WezTerm'
+cmd + shift - i : open -a WezTerm
 cmd + shift - s : open -a Slack
 # cmd + shift - p : open -a Spotify
 cmd + shift - e : open -a 'Microsoft Edge'
@@ -30,9 +30,9 @@ ctrl + cmd + shift - b : yabai -m window --toggle border
 # ctrl + cmd + shift - e : yabai -m window --toggle split
 
 # stop/start/restart yabai
-ctrl + cmd - w : brew services stop yabai
-ctrl + cmd - s : brew services start yabai
-ctrl + cmd - r : brew services restart yabai
+ctrl + cmd - w : brew services stop yabai; osascript -e 'display notification "Stop yabai" with title "Yabai"'
+ctrl + cmd - s : brew services start yabai; osascript -e 'display notification "Start yabai" with title "Yabai"'
+ctrl + cmd - r : brew services restart yabai; osascript -e 'display notification "Restart yabai" with title "Yabai"'
 
 ##############################
 # YABAI FLOATING WINDOW
@@ -40,7 +40,7 @@ ctrl + cmd - r : brew services restart yabai
 # toggle window float and centralize
 shift + ctrl - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 # toggle central
-shift + ctrl - c : yabai -m window --grid 4:4:1:1:2:2
+shift + ctrl - c : yabai -m window --grid 4:4:1:1:2:2; osascript -e 'display notification "Toggle central screen" with title "Yabai"'
 # toggle fullscreen
 shift + ctrl - f : yabai -m window --grid 1:1:0:0:1:1
 # fill top-half of screen

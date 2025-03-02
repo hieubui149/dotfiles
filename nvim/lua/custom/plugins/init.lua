@@ -8,6 +8,9 @@ return {
 	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
 	{ "nordtheme/vim", lazy = false, priority = 1000 },
 
+	-- a smooth scrolling neovim
+	{ "karb94/neoscroll.nvim", opts = {} },
+
 	-- display color column as character
 	{ "lukas-reineke/virt-column.nvim", opts = {
 		char = "┊",
@@ -70,8 +73,8 @@ return {
 	},
 
 	-- Fold
-	{ "kevinhwang91/promise-async" },
-	{ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
+	-- { "kevinhwang91/promise-async" },
+	-- { "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" },
 
 	{ "fedepujol/move.nvim" },
 
@@ -128,7 +131,7 @@ return {
 
 	-- Vim movement + motion with brackets
 	{ "echasnovski/mini.bracketed", version = "*" },
-	{ "echasnovski/mini.animate", version = "*" },
+	-- { "echasnovski/mini.animate", version = "*" },
 	-- { 'echasnovski/mini.indentscope', version = '*' },
 
 	{ "RutaTang/quicknote.nvim", config = {
@@ -334,10 +337,10 @@ return {
     config = function()
 			vim.keymap.set('n', '<leader>dk', function() require("duck").cook() end, {})
 			vim.keymap.set('n', '<leader>da', function() require("duck").cook_all() end, {})
-			vim.keymap.set('n', '<leader>dd', function() require("duck").hatch("🦆", 10) end, {}) -- A pretty fast duck
-			vim.keymap.set('n', '<leader>dc', function() require("duck").hatch("🐈", 0.75) end, {}) -- Quite a mellow cat
-			vim.keymap.set('n', '<leader>db', function() require("duck").hatch("🦋", 10) end, {}) -- Quite a mellow cat
-			vim.keymap.set('n', '<leader>df', function() require("duck").hatch("🦀", 10) end, {}) -- Quite a mellow cat
+			vim.keymap.set('n', '<leader>d1', function() require("duck").hatch("🦆", 10) end, {}) -- A pretty fast duck
+			vim.keymap.set('n', '<leader>d2', function() require("duck").hatch("🐈", 0.75) end, {}) -- Quite a mellow cat
+			vim.keymap.set('n', '<leader>d3', function() require("duck").hatch("🦋", 10) end, {}) -- Quite a mellow cat
+			vim.keymap.set('n', '<leader>d4', function() require("duck").hatch("🦀", 10) end, {}) -- Quite a mellow cat
     end
 	},
 

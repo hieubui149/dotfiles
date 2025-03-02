@@ -54,6 +54,9 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
+-- Use spaces instead of tabs
+vim.opt.expandtab = true
+
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
@@ -96,8 +99,15 @@ vim.opt.relativenumber = true
 vim.opt.colorcolumn = "120"
 vim.opt.encoding = "utf8"
 vim.opt.confirm = true
+
+-- Folding
 vim.opt.foldmethod = "indent"
+-- vim.opt.lazyredraw = true
+vim.opt.foldnestmax = 4
+vim.opt.foldminlines = 5
 vim.opt.foldlevelstart = 20
+vim.opt.foldcolumn = "0"
+
 vim.opt.fillchars = { eob = " ", fold = " " }
 vim.opt.autoindent = true
 vim.opt.smartindent = true
