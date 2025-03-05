@@ -18,7 +18,7 @@ cmd + shift - e : open -a 'Microsoft Edge'
 # cmd + shift - t : open -a Telegram
 cmd + shift - m : open -a Mail
 cmd + shift - o : open -a Obsidian
-cmd + shift - c : open -a Calendar
+cmd + shift - c : open -a 'Google Chrome'
 cmd + shift - z : open -a Zalo
 
 ##############################
