@@ -1,5 +1,9 @@
-# Nord theme
+# Everforrest theme
 # [START]----------- THEME CONFIGURATION ------------------
+# Highlight color: #a7c080
+# Normal color: #d3c6aa
+# Background color: #2d353b
+
 set -g message-style "fg=colour231,bg=colour240"
 
 set -g @dark_color "#2d353b"

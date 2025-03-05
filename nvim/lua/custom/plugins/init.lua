@@ -3,10 +3,11 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-	{ "rmehri01/onenord.nvim", lazy = false, priority = 1000 },
+	-- { "rmehri01/onenord.nvim", lazy = false, priority = 1000 },
 	{ "sainnhe/everforest", lazy = false, priority = 1000 },
+	-- { "rebelot/kanagawa.nvim", lazy = false, priority = 1000 },
 	{ "folke/tokyonight.nvim", lazy = false, priority = 1000 },
-	{ "nordtheme/vim", lazy = false, priority = 1000 },
+	-- { "nordtheme/vim", lazy = false, priority = 1000 },
 
 	-- a smooth scrolling neovim
 	{ "karb94/neoscroll.nvim", opts = {} },
@@ -276,7 +277,8 @@ return {
 		opts = {
 			hi = {
 				-- bg = "#16161E",
-				fg = "#82aaff",
+				-- fg = "#82aaff",
+				fg = "#83C092",
 			},
 		},
 	},
@@ -285,19 +287,33 @@ return {
 	{
 		"petertriho/nvim-scrollbar",
 		config = function()
-			local colors = require("tokyonight.colors").setup()
+			-- local colors = require("tokyonight.colors").setup()
+			-- require("scrollbar").setup({
+			-- 	handle = {
+			-- 		color = colors.bg_highlight,
+			-- 	},
+			-- 	marks = {
+			-- 		Cursor = { text = "◀", color = colors.info },
+			-- 		Search = { text = { "-", "=" }, color = colors.orange },
+			-- 		Error = { color = colors.error },
+			-- 		Warn = { color = colors.warning },
+			-- 		Info = { color = colors.info },
+			-- 		Hint = { color = colors.hint },
+			-- 		Misc = { color = colors.purple },
+			-- 	}
+			-- })
 			require("scrollbar").setup({
 				handle = {
-					color = colors.bg_highlight,
+					color = '#4D5960',
 				},
 				marks = {
-					Cursor = { text = "◀", color = colors.info },
-					Search = { text = { "-", "=" }, color = colors.orange },
-					Error = { color = colors.error },
-					Warn = { color = colors.warning },
-					Info = { color = colors.info },
-					Hint = { color = colors.hint },
-					Misc = { color = colors.purple },
+					Cursor = { text = "◀", color = '#83C092' },
+					Search = { text = { "-", "=" }, color = '#E69875' },
+					Error = { color = '#E67E80' },
+					Warn = { color = '#DBBC7F' },
+					Info = { color = '#7FBBB3' },
+					Hint = { color = '#D699B6' },
+					Misc = { color = '#D699B6' },
 				}
 			})
 		end,

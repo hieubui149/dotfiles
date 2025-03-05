@@ -15,8 +15,13 @@ config.font_size = 16
 -- Window, UI, themes
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
-config.color_scheme = 'Tokyo Night Storm (Gogh)'
-
+-- config.color_scheme = 'Tokyo Night Storm (Gogh)'
+config.color_scheme = 'Everforest Light Soft (Gogh)'
+-- config.color_scheme = 'Chalk (light) (terminal.sexy)'
+config.colors = {
+  background = '#3A464C',
+  -- background = '#d9e4cd',
+}
 
 -- Image settings
 local background_folder = "/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg"
@@ -37,34 +42,36 @@ local function pick_random_background(folder)
   end
 end
 
-config.keys = {
-  {
-    key = "b",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action_callback(function(window, pane)
-      local new_background = pick_random_background(background_folder)
-      if new_background then
-        window:set_config_overrides({
-          window_background_image = new_background,
-        })
-        wezterm.log_info("New bg:" .. new_background)
-      else
-        window:set_config_overrides({
-          window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png',
-        })
-        wezterm.log_error("Could not find bg image")
-      end
-    end),
-  },
-}
+-- config.keys = {
+--   {
+--     key = "b",
+--     mods = "CTRL|SHIFT",
+--     action = wezterm.action_callback(function(window, pane)
+--       local new_background = pick_random_background(background_folder)
+--       if new_background then
+--         window:set_config_overrides({
+--           window_background_image = new_background,
+--         })
+--         wezterm.log_info("New bg:" .. new_background)
+--       else
+--         -- window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png',
+--         window:set_config_overrides({
+--           window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/everforest/bg1.jpg'
+--         })
+--         wezterm.log_error("Could not find bg image")
+--       end
+--     end),
+--   },
+-- }
 
-config.window_background_opacity = 1
-config.macos_window_background_blur = 1
-config.window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png'
-config.window_background_image_hsb = {
-  brightness = 1,
-  hue = 1,
-  saturation = 1.0,
-}
+-- config.window_background_opacity = 1
+-- config.macos_window_background_blur = 1
+-- config.window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/bg/bg3.png'
+-- config.window_background_image = '/Users/hieubui/Pictures/backgrounds/wezterm-bgs/everforest/bg1.jpg'
+-- config.window_background_image_hsb = {
+--   brightness = 1,
+--   hue = 1,
+--   saturation = 1.0,
+-- }
 
 return config

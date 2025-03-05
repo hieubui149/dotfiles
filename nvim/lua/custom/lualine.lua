@@ -17,7 +17,7 @@ require('lualine').setup({
   options = {
     icons_enabled = true,
     -- theme = custom_themes,
-    theme = 'tokyonight',
+    -- theme = 'tokyonight',
     -- component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {

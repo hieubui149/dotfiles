@@ -49,21 +49,21 @@ vim.keymap.set({ 'n', 'v' }, '<Space>jk', '<c-w><c-k>', { desc = '[J]ump to Top 
 vim.keymap.set({ 'n', 'v' }, '<Space>jl', '<c-w><c-l>', { desc = '[J]ump to Right Pane' })
 
 -- Delay hjkl scroll but allow to single press
-local last_press = 0
-local cooldown = 100  -- 200ms delay
-
-local function slow_move(key)
-  local now = vim.loop.now()
-  if now - last_press > cooldown then
-    last_press = now
-    return key
-  end
-  return ""
-end
-vim.keymap.set("n", "h", function() return slow_move("h") end, { expr = true, noremap = true, silent = true })
-vim.keymap.set("n", "j", function() return slow_move("j") end, { expr = true, noremap = true, silent = true })
-vim.keymap.set("n", "k", function() return slow_move("k") end, { expr = true, noremap = true, silent = true })
-vim.keymap.set("n", "l", function() return slow_move("l") end, { expr = true, noremap = true, silent = true })
+-- local last_press = 0
+-- local cooldown = 100  -- 200ms delay
+--
+-- local function slow_move(key)
+--   local now = vim.loop.now()
+--   if now - last_press > cooldown then
+--     last_press = now
+--     return key
+--   end
+--   return ""
+-- end
+-- vim.keymap.set("n", "h", function() return slow_move("h") end, { expr = true, noremap = true, silent = true })
+-- vim.keymap.set("n", "j", function() return slow_move("j") end, { expr = true, noremap = true, silent = true })
+-- vim.keymap.set("n", "k", function() return slow_move("k") end, { expr = true, noremap = true, silent = true })
+-- vim.keymap.set("n", "l", function() return slow_move("l") end, { expr = true, noremap = true, silent = true })
 
 -- Copy file name / relative path / full path
 vim.keymap.set('n', '<Space>cr', ':let @+=expand("%")<CR>', { desc = '[C]opy [R]elative path' })

@@ -40,9 +40,10 @@
 -- vim.cmd.colorscheme 'nord'
 
 -- EVERFOREST THEME
--- vim.g.everforest_transparent_background = 0
+vim.g.everforest_transparent_background = 1
 -- vim.g.everforest_dim_inactive_windows = 1
--- vim.cmd.colorscheme 'everforest'
+vim.cmd.colorscheme 'everforest'
+-- vim.o.background = "light"
 
 -- TOKYONIGHT THEME
 require("tokyonight").setup({
@@ -75,7 +76,7 @@ require("tokyonight").setup({
   --- function will be called with a Highlights and ColorScheme table
   on_highlights = function(highlights, colors) end,
 })
-vim.cmd.colorscheme 'tokyonight'
+-- vim.cmd.colorscheme 'tokyonight'
 
 -- overcome the italic issue causes solid background in neovim
 vim.api.nvim_set_hl(0, "Comment", { fg = "#859289" })
