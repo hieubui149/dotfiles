@@ -22,7 +22,7 @@ vim.keymap.set({ "n", "v" }, "<Space>jk", "<c-w><c-k>", { desc = "[J]ump to Top 
 vim.keymap.set({ "n", "v" }, "<Space>jl", "<c-w><c-l>", { desc = "[J]ump to Right Pane" })
 
 -- Copy file name / relative path / full path
-vim.keymap.set("n", "<Space>cr", ':let @+=expand("%")<CR>', { desc = "[C]opy [R]elative path" })
+vim.keymap.set("n", "<Space>cp", ':let @+=expand("%")<CR>', { desc = "[C]opy [R]elative [P]ath" })
 vim.keymap.set("n", "<Space>cf", ':let @+=expand("%:p")<CR>', { desc = "[C]opy [F]ull path" })
 vim.keymap.set("n", "<Space>cn", ':let @+=expand("%:t")<CR>', { desc = "[C]opy File [N]ame" })
 
@@ -66,14 +66,18 @@ vim.keymap.set("n", "<leader>ui", "zRzvzz", { desc = "Unfold at current indentat
 vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').grep()<CR>", { silent = true, desc = "[F]zf [G]rep" })
 
 -- Github Copilot
-vim.keymap.set("i", "<c-j>", 'copilot#Accept("\\<CR>")', {
-  desc = "Copilot#Accept()",
-  expr = true,
-  replace_keycodes = false,
-})
-vim.keymap.set("i", "<c-u>", function()
-  vim.cmd("call copilot#Next()")
-end, { desc = "Copilot#Next()", silent = true })
-vim.keymap.set("i", "<c-i>", function()
-  vim.cmd("call copilot#Previous()")
-end, { desc = "Copilot#Previous()", silent = true })
+vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+vim.api.nvim_set_keymap("i", "<C-u>", "<Cmd>call copilot#Next()<CR>", { silent = true })
+vim.api.nvim_set_keymap("i", "<C-i>", "<Cmd>call copilot#Previous()<CR>", { silent = true })
+
+-- Remap <Tab> to smarter tab completion to prioritize indentation but fall back to completion
+-- or just tabbing if there is no completion available
+vim.keymap.set("i", "<Tab>", function()
+  if vim.fn.pumvisible() == 1 then
+    return "<C-n>" -- Select next item in completion menu
+  elseif vim.fn.col(".") > 1 and string.match(vim.fn.getline("."):sub(1, vim.fn.col(".") - 1), "%S") then
+    return "<C-n>" -- Trigger completion
+  else
+    return "<Tab>" -- Insert tab
+  end
+end, { expr = true })

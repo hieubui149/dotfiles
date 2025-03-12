@@ -17,3 +17,5 @@ vim.opt.encoding = "utf8"
 vim.opt.confirm = true
 vim.g.nopaste = true
 vim.g.linespace = 1
+
+vim.g.copilot_no_tab_map = true
