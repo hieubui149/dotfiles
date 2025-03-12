@@ -2,6 +2,19 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- LSP keymaps
+-- Jump to the definition of the word under your cursor.
+-- in a new vertical split
+vim.keymap.set("n", "gv", function()
+  vim.cmd("vsplit")
+  vim.lsp.buf.definition()
+end, { desc = "LSP: [G]oto [D]efinition [V]split" })
+-- in a new horizontal split
+vim.keymap.set("n", "gh", function()
+  vim.cmd("split")
+  vim.lsp.buf.definition()
+end, { desc = "LSP: [G]oto [D]efinition [H]split" })
+
 -- Utils for pane movement
 vim.keymap.set({ "n", "v" }, "<Space>jh", "<c-w><c-h>", { desc = "[J]ump to Left Pane" })
 vim.keymap.set({ "n", "v" }, "<Space>jj", "<c-w><c-j>", { desc = "[J]ump to Bottom Pane" })
