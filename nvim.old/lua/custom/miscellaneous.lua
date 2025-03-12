@@ -51,7 +51,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>jl', '<c-w><c-l>', { desc = '[J]ump to Righ
 -- Delay hjkl scroll but allow to single press
 -- local last_press = 0
 -- local cooldown = 100  -- 200ms delay
---
+
 -- local function slow_move(key)
 --   local now = vim.loop.now()
 --   if now - last_press > cooldown then

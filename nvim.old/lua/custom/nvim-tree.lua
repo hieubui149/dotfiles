@@ -1,9 +1,9 @@
 -- [[ Configure Nvim Tree ]]
 -- See `:help nvim-tree`
 
-vim.keymap.set('n', '<leader>ls', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [S]how' })
-vim.keymap.set('n', '<leader>lr', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [R]efresh' })
-vim.keymap.set('n', '<leader>lf', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [F]ind Files' })
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [S]how' })
+-- vim.keymap.set('n', '<leader>er', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [R]efresh' })
+-- vim.keymap.set('n', '<leader>ef', ':NvimTreeToggle<CR>', { desc = 'Toggle tree [L]ist [F]ind Files' })
 -- nnoremap <F1> :NvimTreeToggle<CR>
 
 local HEIGHT_RATIO = 0.8 -- You can change this
