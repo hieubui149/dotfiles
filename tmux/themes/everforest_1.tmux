@@ -40,5 +40,5 @@ setw -g window-status-style "none,fg=#15d69e,bg=colour236"
 
 # [COLORIZE]
 set -g window-status-format "#[fg=#3F5865,bg=#333C43]#[fg=#333C43,bg=#3F5865] #I #[fg=#333C43,bg=#d3c6aa] #W #[fg=#d3c6aa,bg=#333C43] "
-set -g window-status-current-format "#[fg=#7FBBB3,bg=#333C43]#[fg=#333C43,bg=#7FBBB3] #I #[fg=#333C43,bg=#d3c6aa] #W #[fg=#d3c6aa,bg=#333C43] "
+set -g window-status-current-format "#[fg=#7FBBB3,bg=#333C43]#[fg=#333C43,bg=#7FBBB3] #I #[fg=#333C43,bg=#a7c080] #W #[fg=#a7c080,bg=#333C43] "
 # [END]----------- THEME CONFIGURATION ------------------
