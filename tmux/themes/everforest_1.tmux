@@ -31,14 +31,14 @@ setw -g pane-border-format " ###P "
 setw -g pane-border-lines "simple"
 # ---- Bars -------
 # [COLORIZE]
-set -g status-left "#[fg=#a7c080,bg=#333C43]#[fg=#333C43,bg=#a7c080]  #[fg=#333C43,bg=#d3c6aa] #S #[fg=#d3c6aa,bg=#333C43]"
-set -g status-right "#[fg=#E67E80,bg=#333C43]#[fg=#333C43,bg=#E67E80]  #[fg=#333C43,bg=#d3c6aa] %Y-%m-%d #[fg=#d3c6aa,bg=#333C43] #[fg=#E69875,bg=#333C43]#[fg=#333C43,bg=#E69875]祥 #[fg=#333C43,bg=#d3c6aa] %H:%M #[fg=#d3c6aa,bg=#333C43]"
+set -g status-left "#[fg=#a7c080,bg=#333C43]#[fg=#333C43,bg=#a7c080] │#[fg=#333C43,bg=#d3c6aa] #S #[fg=#d3c6aa,bg=#333C43]"
+set -g status-right "#[fg=#E67E80,bg=#333C43]#[fg=#333C43,bg=#E67E80] │#[fg=#333C43,bg=#d3c6aa] %Y-%m-%d #[fg=#d3c6aa,bg=#333C43] #[fg=#E69875,bg=#333C43]#[fg=#333C43,bg=#E69875]祥│#[fg=#333C43,bg=#d3c6aa] %H:%M #[fg=#d3c6aa,bg=#333C43]"
 # ---- Windows ----
 setw -g window-status-activity-style "none"
 setw -g window-status-separator ""
 setw -g window-status-style "none,fg=#15d69e,bg=colour236"
 
 # [COLORIZE]
-set -g window-status-format "#[fg=#3F5865,bg=#333C43]#[fg=#333C43,bg=#3F5865] #I #[fg=#333C43,bg=#d3c6aa] #W #[fg=#d3c6aa,bg=#333C43] "
-set -g window-status-current-format "#[fg=#7FBBB3,bg=#333C43]#[fg=#333C43,bg=#7FBBB3] #I #[fg=#333C43,bg=#a7c080] #W #[fg=#a7c080,bg=#333C43] "
+set -g window-status-format "#[fg=#d3c6aa,bg=#333C43]#[fg=#333C43,bg=#d3c6aa] #I│#[fg=#333C43,bg=#d3c6aa]#W #[fg=#d3c6aa,bg=#333C43] "
+set -g window-status-current-format "#[fg=#a7c080,bg=#333C43]#[fg=#333C43,bg=#a7c080] #I│#[fg=#333C43,bg=#a7c080] #W #[fg=#a7c080,bg=#333C43] "
 # [END]----------- THEME CONFIGURATION ------------------

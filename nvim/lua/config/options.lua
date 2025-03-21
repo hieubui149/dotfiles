@@ -19,3 +19,7 @@ vim.g.nopaste = true
 vim.g.linespace = 1
 
 vim.g.copilot_no_tab_map = true
+
+-- LSP settings
+vim.g.lazyvim_ruby_lsp = "ruby_lsp"
+vim.g.lazyvim_ruby_formatter = "rubocop"
