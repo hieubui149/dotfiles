@@ -65,11 +65,6 @@ vim.keymap.set("n", "<leader>ui", "zRzvzz", { desc = "Unfold at current indentat
 -- Grep with FZF
 vim.keymap.set("n", "<leader>fg", "<cmd>lua require('fzf-lua').grep()<CR>", { silent = true, desc = "[F]zf [G]rep" })
 
--- Github Copilot
-vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-u>", "<Cmd>call copilot#Next()<CR>", { silent = true })
-vim.api.nvim_set_keymap("i", "<C-i>", "<Cmd>call copilot#Previous()<CR>", { silent = true })
-
 -- Remap <Tab> to smarter tab completion to prioritize indentation but fall back to completion
 -- or just tabbing if there is no completion available
 vim.keymap.set("i", "<Tab>", function()
@@ -81,3 +76,10 @@ vim.keymap.set("i", "<Tab>", function()
     return "<Tab>" -- Insert tab
   end
 end, { expr = true })
+
+-- Github Copilot
+vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-u>", "<Cmd>call copilot#Next()<CR>", { silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-i>", "<Cmd>call copilot#Previous()<CR>", { silent = true })
+-- Make Avante override keymap
+-- vim.keymap.set({ "n", "v" }, "<leader>aa", ":AvanteToggle<CR>", { desc = "avante: toggle sidebar", silent = true })

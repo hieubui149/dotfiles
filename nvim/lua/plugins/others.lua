@@ -1,4 +1,12 @@
 return {
+  -- Disable snacks scroll for better performance
+  {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+    },
+  },
+
   -- Surround text objects with symbols
   {
     "echasnovski/mini.surround",

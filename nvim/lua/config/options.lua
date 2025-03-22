@@ -23,3 +23,7 @@ vim.g.copilot_no_tab_map = true
 -- LSP settings
 vim.g.lazyvim_ruby_lsp = "ruby_lsp"
 vim.g.lazyvim_ruby_formatter = "rubocop"
+
+vim.opt.scrolloff = 3 -- Keep some context when scrolling (default: 3)
+vim.opt.sidescrolloff = 5 -- Context for side scrolling
+vim.opt.smoothscroll = false -- 🚀 Disable any extra smooth scrolling behavior
