@@ -1,4 +1,6 @@
 return {
+  { "karb94/neoscroll.nvim", opts = {} },
+
   -- Disable snacks scroll for better performance
   {
     "snacks.nvim",
