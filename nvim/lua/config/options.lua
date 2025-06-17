@@ -11,6 +11,9 @@ vim.o.hlsearch = true
 -- Make line numbers default
 vim.wo.number = true
 
+-- Turn off auto format
+vim.g.autoformat = false
+
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = "120"
 vim.opt.encoding = "utf8"

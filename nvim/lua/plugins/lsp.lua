@@ -7,9 +7,14 @@ return {
       servers = {
         rubocop = {
           cmd = { "bundle", "exec", "rubocop", "--lsp" },
-          root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
-          enabled = true,
+          filetypes = { "ruby" },
+          root_markers = { "Gemfile", ".git" },
         },
+        -- rubocop = {
+        --   cmd = { "bundle", "exec", "rubocop", "--lsp" },
+        --   root_dir = lspconfig.util.root_pattern("Gemfile", ".git", "."),
+        --   enabled = false,
+        -- },
       },
     },
   },
