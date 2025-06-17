@@ -71,15 +71,6 @@ return {
         desc = "Prompt Actions (CopilotChat)",
         mode = { "n", "v" },
       },
-
-      {
-        "<leader>Cc",
-        function()
-          require("CopilotChat.integrations").apply_to_buffer()
-        end,
-        desc = "Apply Suggestion",
-        mode = { "n", "v" },
-      },
     },
     config = function(_, opts)
       local chat = require("CopilotChat")
@@ -114,8 +105,8 @@ return {
       vim.api.nvim_set_keymap("i", "<C-j>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
     end,
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- build = "make",
-    build = "make tiktoken",
+    build = "make",
+    -- build = "make tiktoken",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "stevearc/dressing.nvim",
